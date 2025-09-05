@@ -259,11 +259,10 @@ export default function HomeServices() {
           </h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
             Choose the perfect service level for your business needs. From
-            strategic guidance to full execution, we've got you covered.
+            strategic guidance to full execution, we&apos;ve got you covered.
           </p>
         </motion.header>
 
-        {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
           {services.map((service, index) => (
             <ServiceCard
