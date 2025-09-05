@@ -7,7 +7,7 @@ const LogoCarousel = () => {
   const logoCount = 16;
   const logos = Array.from({ length: logoCount }, (_, i) => ({
     id: i + 1,
-    src: `/logo-${i + 1}.JPG`,
+    src: `/logo-${i + 1}.jpg`,
     alt: `Logo ${i + 1}`,
   }));
 
