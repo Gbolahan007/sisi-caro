@@ -107,7 +107,7 @@ function ServiceCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{
         duration: 0.6,

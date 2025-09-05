@@ -15,6 +15,7 @@ import {
   Search,
   Target,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function ServicesSection() {
   const router = useRouter();
@@ -130,14 +131,13 @@ export default function ServicesSection() {
           transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <Button
-            onClick={() => router.push("/services")}
-            className="inline-flex justify-center items-center px-8 py-2.5 bg-red-600 hover:bg-red-700 border font-bold rounded-xl border-red-600 text-white text-lg transition-colors space-x-2"
-          >
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-            <span className="font-medium">View All Services</span>
-            <ArrowRight size={20} />
-          </Button>
+          <Link href="/services" passHref>
+            <Button className="inline-flex justify-center items-center px-8 py-2.5 bg-red-600 hover:bg-red-700 border font-bold rounded-xl border-red-600 text-white text-lg transition-colors space-x-2">
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+              <span className="font-medium">View All Services</span>
+              <ArrowRight size={20} />
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </div>

@@ -29,7 +29,6 @@ export default function CartDrawer({ open, setOpen }) {
     <AnimatePresence>
       {open && (
         <>
-          {/* Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -73,13 +72,11 @@ export default function CartDrawer({ open, setOpen }) {
                     key={item.id}
                     className="flex justify-between items-center border border-gray-100 rounded-xl p-4 bg-gray-50"
                   >
-                    {/* Left side: Title + Quantity Controls */}
                     <div className="flex flex-col flex-1 min-w-0">
                       <h4 className="font-medium text-gray-900 truncate">
                         {item.title}
                       </h4>
 
-                      {/* Quantity controls under title */}
                       <div className="flex items-center gap-2 mt-2">
                         <button
                           onClick={() => decrementQuantity(item.id)}
