@@ -3,16 +3,16 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const HomeAboutUs = () => {
-  // Image animation
   const imageVariants = {
-    hidden: { x: -100, opacity: 0 },
+    hidden: { y: 60, opacity: 0, scale: 0.95 },
     visible: {
-      x: 0,
+      y: 0,
       opacity: 1,
+      scale: 1,
       transition: {
         type: "spring",
-        stiffness: 100,
-        damping: 15,
+        stiffness: 90,
+        damping: 18,
         delay: 0.3,
       },
     },
@@ -50,7 +50,7 @@ const HomeAboutUs = () => {
   return (
     <section className="py-8 md:py-10 lg:py-12 px-4 bg-white mt-10 ">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
           {/* Image Section */}
           <motion.div
             initial="hidden"

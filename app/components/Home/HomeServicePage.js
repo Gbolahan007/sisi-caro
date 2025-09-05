@@ -72,7 +72,6 @@ const services = [
 ];
 
 // -------------------- Service Card --------------------
-
 function ServiceCard({
   service,
   inCart,
@@ -81,46 +80,35 @@ function ServiceCard({
   onInc,
   onDec,
   isHydrated,
+  index,
 }) {
   const Icon = service.icon;
 
   const handleSubscribe = (e) => {
     e.stopPropagation();
     e.preventDefault();
-
     onAdd();
     toast.success(`${service.title} added to cart 🎉`, {
       position: "top-right",
     });
   };
 
-  const handleIncrement = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onInc();
-  };
-
-  const handleDecrement = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onDec();
-  };
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 80, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.3 }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.15, // 👈 staggered animation like ServicesSection
+        ease: "easeOut",
+      }}
+      viewport={{ once: true }}
       className="h-full"
     >
-      {/* Wrap card with Link for dynamic route */}
       <Link href={`/services/${service.id}`} className="block h-full">
         <Card className="group relative flex flex-col justify-between h-full border border-gray-200 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden">
-          {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-          {/* ---- Header ---- */}
           <CardHeader className="pb-4 relative z-10">
             <div className="flex items-center gap-4 mb-4">
               <div className="p-2 rounded-xl bg-gradient-to-br from-red-100 to-red-50 shadow-sm group-hover:shadow-md transition-shadow duration-300">
@@ -145,7 +133,6 @@ function ServiceCard({
             </CardDescription>
           </CardHeader>
 
-          {/* ---- Content ---- */}
           <CardContent className="flex flex-col flex-grow justify-between relative z-10">
             <div className="space-y-4">
               <div>
@@ -175,14 +162,10 @@ function ServiceCard({
               </div>
             </div>
 
-            {/* ---- Action Button ---- */}
+            {/* Action */}
             <div className="mt-6">
               {!isHydrated ? (
-                <Button
-                  disabled
-                  className="w-full bg-gray-400 text-white"
-                  onClick={(e) => e.stopPropagation()}
-                >
+                <Button disabled className="w-full bg-gray-400 text-white">
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   Subscribe Now
                 </Button>
@@ -199,7 +182,11 @@ function ServiceCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={handleDecrement}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onDec();
+                    }}
                     className="h-9 w-9 rounded-md border border-gray-300 bg-white hover:bg-gray-100"
                   >
                     <Minus className="h-4 w-4 text-gray-700" />
@@ -212,7 +199,11 @@ function ServiceCard({
                   <Button
                     variant="ghost"
                     size="sm"
-                    onClick={handleIncrement}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      onInc();
+                    }}
                     className="h-9 w-9 rounded-md border border-gray-300 bg-white hover:bg-gray-100"
                   >
                     <Plus className="h-4 w-4 text-gray-700" />
@@ -248,21 +239,28 @@ export default function HomeServices() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.header
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           className="text-center mb-16"
         >
           <h2 className="text-3xl sm:text-4xl font-extrabold text-black mb-4">
             Core Services That Drive Results
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
+          <motion.p
+            className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             Choose the perfect service level for your business needs. From
             strategic guidance to full execution, we&apos;ve got you covered.
-          </p>
+          </motion.p>
         </motion.header>
 
+        {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
           {services.map((service, index) => (
             <ServiceCard
@@ -274,6 +272,7 @@ export default function HomeServices() {
               onInc={() => incrementQuantity(service.id)}
               onDec={() => decrementQuantity(service.id)}
               isHydrated={isHydrated}
+              index={index}
             />
           ))}
         </div>

@@ -97,9 +97,9 @@ const Footer = () => {
   return (
     <footer className="bg-white mt-6 text-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Logo Section */}
-          <div className="col-span-1 lg:col-span-1">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-1">
             <div className="mb-2">
               <Image
                 src="/sis-carooo.png"
@@ -133,9 +133,9 @@ const Footer = () => {
           </div>
 
           {/* Our Services */}
-          <div className="col-span-1 lg:col-span-2">
+          <div className="col-span-1 sm:col-span-2 lg:col-span-2">
             <h3 className="text-lg font-semibold mb-4">Our Services</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
               {services.map((service) => (
                 <Link
                   key={service.slug}
@@ -160,6 +160,8 @@ const Footer = () => {
                   href={social.href}
                   className={`text-gray-600 ${social.hoverColor} transition-colors duration-200`}
                   aria-label={social.name}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <social.icon className="w-5 h-5" />
                 </Link>
@@ -168,7 +170,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="text-gray-500 text-sm">
-              © 2025 Sis Caroo. All rights reserved.
+              © 2025 Sis Caro. All rights reserved.
             </div>
           </div>
         </div>
