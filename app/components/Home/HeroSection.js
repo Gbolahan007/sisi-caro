@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Poppins, Kaushan_Script } from "next/font/google";
-import Link from "next/link"; // ✅ import Link
 
 const poppins = Poppins({
   weight: ["400", "600", "700", "800"],
@@ -79,34 +78,28 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center sm:mb-12 md:mb-16 relative"
         >
-          {/* Primary CTA → Contact */}
-          <Link href="/contact">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-xl text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
-              aria-label="Start free strategy call"
-            >
-              <span>Book a 15 Minutes Call</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
-          </Link>
+          {/* Primary CTA */}
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-xl text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
+            aria-label="Start free strategy call"
+          >
+            <span>Book a 15 Minutes Call</span>
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </motion.button>
 
-          {/* Secondary CTA → Services */}
-          <Link href="/services">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className="group bg-white text-black hover:text-red-500 font-medium px-6 py-4 rounded-xl text-lg sm:text-xl border-2 border-white hover:border-red-500/50 transition-all duration-300"
-              aria-label="Explore services"
-            >
-              Explore Our Services
-            </motion.button>
-          </Link>
+          <motion.button
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
+            className="group bg-white text-black hover:text-red-500 font-medium px-6 py-4 rounded-xl text-lg sm:text-xl border-2 border-white hover:border-red-500/50 transition-all duration-300"
+            aria-label="Explore services"
+          >
+            Explore Our Services
+          </motion.button>
 
-          {/* Floating glow effects */}
           <motion.div
             animate={{ y: [0, -12, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
@@ -125,7 +118,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
