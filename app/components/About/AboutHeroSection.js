@@ -84,7 +84,7 @@ export default function AboutHeroSection() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 300 }}
-              className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-xl text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
+              className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-sm text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
               aria-label="Contact Sisicaro"
             >
               <span>Get In Touch</span>

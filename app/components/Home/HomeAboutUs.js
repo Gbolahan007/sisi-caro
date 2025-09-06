@@ -136,7 +136,7 @@ const HomeAboutUs = () => {
               >
                 <button
                   onClick={() => (window.location.href = "/about")}
-                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-medium text-white bg-black hover:bg-red-600 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 ease-out w-full sm:w-auto"
+                  className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-medium text-white bg-black hover:bg-red-600 rounded-sm shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 ease-out w-full sm:w-auto"
                 >
                   <span className="relative">Learn More</span>
                   <svg

@@ -83,7 +83,7 @@ export default function HeroSection() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-xl text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
+            className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-sm text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
             aria-label="Start free strategy call"
           >
             <span>Book a 15 Minutes Call</span>
@@ -94,7 +94,7 @@ export default function HeroSection() {
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300 }}
-            className="group bg-white text-black hover:text-red-500 font-medium px-6 py-4 rounded-xl text-lg sm:text-xl border-2 border-white hover:border-red-500/50 transition-all duration-300"
+            className="group bg-white text-black hover:text-red-500 font-medium px-6 py-4 rounded-sm text-lg sm:text-xl border-2 border-white hover:border-red-500/50 transition-all duration-300"
             aria-label="Explore services"
           >
             Explore Our Services
