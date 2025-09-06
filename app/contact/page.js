@@ -10,6 +10,12 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Kaushan_Script } from "next/font/google";
+
+const kau = Kaushan_Script({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Contact() {
   return (
@@ -41,7 +47,7 @@ export default function Contact() {
             <span className="text-red-500">Impactful</span>
           </h1>
           <motion.p
-            className="text-lg md:text-xl text-gray-200 font-light mb-6"
+            className={`${kau.className} text-lg md:text-xl text-gray-200 mb-6 `}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -49,16 +55,6 @@ export default function Contact() {
           >
             At Sisicaro, we help brands stand out with tailored strategies and
             digital solutions that drive real growth.
-          </motion.p>
-          <motion.p
-            className="text-md text-gray-300 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Whether you’re looking to launch, scale, or transform your business,
-            our team is ready to collaborate with you on your next big project.
           </motion.p>
         </motion.div>
       </section>
@@ -82,7 +78,6 @@ export default function Contact() {
               opportunities, or to start a project with us.
             </p>
 
-            {/* Contact Info */}
             <motion.div
               className="space-y-8"
               initial="hidden"
@@ -137,7 +132,7 @@ export default function Contact() {
                 </p>
                 <Link
                   href="/get-started"
-                  className="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-red-700 transition-colors transform hover:scale-105"
+                  className="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded-sm font-medium hover:bg-red-700 transition-colors transform hover:scale-105"
                 >
                   <Calendar className="w-5 h-5 mr-2" /> Book 30 Minutes
                 </Link>
@@ -250,7 +245,7 @@ export default function Contact() {
               />
               <Link
                 href="/get-started"
-                className="block text-center bg-red-600 text-white py-3 rounded-lg font-medium hover:bg-red-700 transition-colors transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"
+                className="block text-center bg-red-600 text-white py-3 rounded-sm font-medium hover:bg-red-700 transition-colors transform hover:scale-[1.02] active:scale-[0.98] shadow-lg"
               >
                 Get a Free Consultation
               </Link>
