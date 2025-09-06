@@ -66,9 +66,9 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-base sm:text-lg md:text-xl lg:text-xl mb-12 max-w-3xl mx-auto leading-relaxed text-white/80"
         >
-          We help Nigerian entrepreneurs transform digital strategies into
-          powerful growth engines — giving them clarity, structure, and results
-          that scale.
+          For business owners who’ve been showing up but not seeing results — we
+          bring the strategy, structure, and support your brand needs to launch
+          and scale.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -86,7 +86,7 @@ export default function HeroSection() {
             className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-sm text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
             aria-label="Start free strategy call"
           >
-            <span>Book a 15 Minutes Call</span>
+            <span>Start with a free clarity call</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.button>
 

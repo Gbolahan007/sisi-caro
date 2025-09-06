@@ -3,6 +3,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Users, DollarSign, LayoutGrid, Activity } from "lucide-react";
+import { Montserrat } from "next/font/google"; // ✅ Import font
+
+// Load Montserrat
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["600", "700"], // Semi-bold & Bold for headings
+});
 
 const features = [
   {
@@ -53,6 +60,31 @@ const itemVariants = {
 export default function AboutUsWhyWorkWithUs() {
   return (
     <section className="py-20 px-6 bg-white">
+      <motion.div
+        className="mb-12"
+        initial={{ y: 40, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ type: "spring", stiffness: 90, damping: 16 }}
+      >
+        <h2
+          className={`text-3xl font-bold text-gray-900 mb-4 ${montserrat.className}`}
+        >
+          Our Solution
+        </h2>
+        <p className="text-lg text-gray-700 leading-relaxed">
+          At <span className="text-red-600 italic">Sisicaro</span>, our mission
+          is to solve the challenges businesses face in acquiring, engaging,
+          retaining, and scaling their users across digital platforms. Too
+          often, companies struggle due to unreliable partners and wasted
+          budgets on vanity marketing that ignores meaningful data.
+        </p>
+        <p className="text-lg text-gray-700 leading-relaxed mt-4">
+          We tackle this by focusing on strategies that prioritize measurable
+          growth, actionable insights, and sustainable results.
+        </p>
+      </motion.div>
+
       <div className="max-w-6xl mx-auto">
         {/* Cards Grid */}
         <motion.div
@@ -70,7 +102,9 @@ export default function AboutUsWhyWorkWithUs() {
             >
               <div className="flex items-center mb-4">
                 <feature.icon className="w-7 h-7 text-red-600 mr-3" />
-                <h2 className="text-xl font-semibold text-gray-900">
+                <h2
+                  className={`text-xl font-semibold text-gray-900 ${montserrat.className}`}
+                >
                   {feature.title}
                 </h2>
               </div>
