@@ -8,7 +8,7 @@ import { DateScheduler } from "../components/Home/DateScheduler";
 
 export default function GetStartedPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-x-hidden">
       {/* Hero Section */}
       <div className="relative overflow-hidden ">
         <div className="absolute inset-0 ">

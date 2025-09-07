@@ -9,7 +9,6 @@ export default function HomeCartDrawer({ open, onClose }) {
   const removeItem = useCartStore((state) => state.removeItem);
   const getCartTotal = useCartStore((state) => state.getCartTotal);
 
-  console.log(items);
   return (
     <AnimatePresence>
       {open && (

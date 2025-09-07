@@ -107,7 +107,7 @@ export default function MobileMenu({ open, setOpen }) {
                 Get a free digital marketing consultation
               </p>
               <Link
-                href="/contact"
+                href="/get-started"
                 onClick={() => setOpen(false)}
                 className="block w-full bg-red-500 text-white text-center py-3 rounded-lg font-medium transition-all duration-300 hover:bg-red-600 hover:shadow-lg"
               >
