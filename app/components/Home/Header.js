@@ -139,7 +139,7 @@ function Header() {
 
             <div className="hidden lg:block">
               <Link
-                href="/contact"
+                href="/get-started"
                 className={`px-6 py-2.5 text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 ${
                   isScrolled
                     ? "bg-red-600 text-white hover:bg-red-700"
