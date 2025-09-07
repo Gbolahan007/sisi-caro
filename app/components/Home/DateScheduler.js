@@ -11,7 +11,6 @@ import {
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
 
-// ✅ Generate 3 random dates per week until end of year
 function generateAvailableDates() {
   const today = new Date();
   const endOfYear = new Date(today.getFullYear(), 11, 31); // Dec 31
