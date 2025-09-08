@@ -1,15 +1,9 @@
 "use client";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Mail,
-  User,
-  Clock,
-  Calendar,
-  CheckCircle,
-} from "lucide-react";
+import { scheduleMeeting } from "@/app/_lib/mailAction";
+import { ArrowRight, Calendar, CheckCircle, Clock } from "lucide-react";
 import { useState } from "react";
 import { DayPicker } from "react-day-picker";
+import toast from "react-hot-toast";
 
 function generateAvailableDates() {
   const today = new Date();
@@ -55,6 +49,7 @@ export function DateScheduler() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [showUserForm, setShowUserForm] = useState(false);
   const [userDetails, setUserDetails] = useState({ name: "", email: "" });
+  const [loading, setLoading] = useState(false); // spinner state
 
   const disabledMatcher = (date) => {
     const dateString = date.toISOString().split("T")[0];
@@ -82,17 +77,39 @@ export function DateScheduler() {
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleBooking = () => {
-    if (userDetails.name && userDetails.email) {
-      alert(
-        `Booking confirmed for ${userDetails.name} (${
-          userDetails.email
-        }) on ${selectedDate.toDateString()} at ${selectedTime}`
-      );
-      setSelectedDate(null);
-      setSelectedTime(null);
-      setShowUserForm(false);
-      setUserDetails({ name: "", email: "" });
+  const handleBooking = async () => {
+    if (userDetails.name && userDetails.email && selectedDate && selectedTime) {
+      try {
+        setLoading(true); // start spinner
+
+        const formData = new FormData();
+        formData.append("name", userDetails.name);
+        formData.append("email", userDetails.email);
+        formData.append("date", selectedDate.toDateString());
+        formData.append("time", selectedTime);
+
+        const result = await scheduleMeeting(formData);
+
+        if (result.success) {
+          toast.success(
+            `Booking confirmed for ${
+              userDetails.name
+            } on ${selectedDate.toDateString()} at ${selectedTime}`
+          );
+        } else {
+          toast.error("Booking saved but email failed: " + result.error);
+        }
+
+        setSelectedDate(null);
+        setSelectedTime(null);
+        setShowUserForm(false);
+        setUserDetails({ name: "", email: "" });
+      } catch (err) {
+        console.error(err);
+        toast.error("Something went wrong. Please try again.");
+      } finally {
+        setLoading(false); // stop spinner
+      }
     }
   };
 
@@ -215,15 +232,45 @@ export function DateScheduler() {
                   </button>
                   <button
                     onClick={handleBooking}
-                    disabled={!userDetails.name || !userDetails.email}
-                    className={`flex-1 py-2 text-sm font-semibold rounded-lg flex items-center justify-center space-x-1 ${
-                      userDetails.name && userDetails.email
+                    disabled={
+                      !userDetails.name || !userDetails.email || loading
+                    }
+                    className={`flex-1 py-2 text-sm font-semibold rounded-lg flex items-center justify-center space-x-2 ${
+                      userDetails.name && userDetails.email && !loading
                         ? "bg-red-600 text-white hover:bg-red-700"
                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                     }`}
                   >
-                    <span>Confirm</span>
-                    <ArrowRight className="w-4 h-4" />
+                    {loading ? (
+                      <>
+                        <svg
+                          className="w-4 h-4 animate-spin text-current"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                          ></path>
+                        </svg>
+                        <span>Processing...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Confirm</span>
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
                   </button>
                 </div>
               </div>

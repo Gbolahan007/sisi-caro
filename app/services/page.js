@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   ArrowRight,
   Target,
@@ -12,7 +13,6 @@ import {
   Headphones,
   Calendar,
   Megaphone,
-  Star,
   CheckCircle,
 } from "lucide-react";
 import Image from "next/image";
@@ -109,13 +109,21 @@ const ServicesPage = () => {
     console.log(`Navigating to ${service.slug}`);
   };
 
-  const ServiceCard = ({ service }) => {
+  const ServiceCard = ({ service, index }) => {
     const IconComponent = service.icon;
 
     return (
-      <div
+      <motion.div
         onClick={() => handleServiceClick(service)}
         className="bg-white p-8 cursor-pointer group border border-gray-100 hover:border-gray-200"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.6,
+          delay: index * 0.15,
+          ease: "easeOut",
+        }}
+        viewport={{ once: true }}
       >
         {/* Icon */}
         <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -138,7 +146,7 @@ const ServicesPage = () => {
             <ArrowRight className="w-5 h-5 text-black" />
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   };
 
@@ -159,17 +167,35 @@ const ServicesPage = () => {
         <div className="absolute inset-0 bg-black/70"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center text-center">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          <motion.h1
+            className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             Transform Your <span className="text-red-600">Business</span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+          <motion.p
+            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             From strategy to execution, we provide the tools and expertise to
             scale your business and dominate your market
-          </p>
+          </motion.p>
 
           {/* Key Benefits */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
             <div className="flex items-center gap-3 justify-center md:justify-start">
               <CheckCircle className="w-6 h-6 text-red-400 flex-shrink-0" />
               <span className="text-gray-300">Strategic Business Growth</span>
@@ -184,28 +210,40 @@ const ServicesPage = () => {
               <CheckCircle className="w-6 h-6 text-red-400 flex-shrink-0" />
               <span className="text-gray-300">Done-for-You Solutions</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
       {/* Core Services Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="mb-12">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl font-bold text-black mb-4">Core Services</h2>
           <div className="w-24 h-1 bg-red-600 mb-4"></div>
           <p className="text-gray-600 text-lg">
             Comprehensive solutions for business growth and strategy
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 ">
-          {coreServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {coreServices.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
 
         {/* Add-on Services Section */}
-        <div className="mb-12">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
           <h2 className="text-3xl font-bold text-black mb-4">
             Add-On Services
           </h2>
@@ -218,11 +256,11 @@ const ServicesPage = () => {
               Starting from: ₦55,550 per service
             </p>
           </div>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {addonServices.map((service) => (
-            <ServiceCard key={service.id} service={service} />
+          {addonServices.map((service, index) => (
+            <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </div>
       </div>
