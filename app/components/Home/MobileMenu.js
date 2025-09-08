@@ -18,8 +18,6 @@ const mobileMenuVariants = {
       stiffness: 120,
       damping: 20,
       mass: 0.8,
-      when: "beforeChildren",
-      staggerChildren: 0.1,
     },
   },
 };
@@ -27,11 +25,6 @@ const mobileMenuVariants = {
 const overlayVariants = {
   closed: { opacity: 0, transition: { duration: 0.2 } },
   open: { opacity: 1, transition: { duration: 0.3 } },
-};
-
-const itemVariants = {
-  closed: { x: 30, opacity: 0 },
-  open: { x: 0, opacity: 1 },
 };
 
 export default function MobileMenu({ open, setOpen }) {
@@ -64,7 +57,7 @@ export default function MobileMenu({ open, setOpen }) {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-full  sm:w-96 sm:max-w-[95vw] bg-white shadow-2xl z-50 lg:hidden border-l border-gray-100 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full sm:w-96 sm:max-w-[95vw] bg-white shadow-2xl z-50 lg:hidden border-l border-gray-100 flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
@@ -81,13 +74,10 @@ export default function MobileMenu({ open, setOpen }) {
               </button>
             </div>
 
-            {/* Nav + CTA grouped animation */}
-            <motion.ul
-              variants={mobileMenuVariants}
-              className="flex-1 py-8 space-y-2"
-            >
+            {/* Nav + CTA */}
+            <ul className="flex-1 py-8 space-y-2">
               {navItems.map((item, index) => (
-                <motion.li key={index} variants={itemVariants}>
+                <li key={index}>
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
@@ -99,11 +89,11 @@ export default function MobileMenu({ open, setOpen }) {
                   >
                     {item.label}
                   </Link>
-                </motion.li>
+                </li>
               ))}
 
-              {/* CTA (joins stagger group) */}
-              <motion.li variants={itemVariants}>
+              {/* CTA */}
+              <li>
                 <div className="mt-8 mx-4 p-6 bg-black/5 rounded-xl border border-gray-100">
                   <h3 className="text-sm font-semibold text-black mb-2">
                     Ready to Grow?
@@ -119,8 +109,8 @@ export default function MobileMenu({ open, setOpen }) {
                     Start Your Journey
                   </Link>
                 </div>
-              </motion.li>
-            </motion.ul>
+              </li>
+            </ul>
           </motion.div>
         </>
       )}
