@@ -64,11 +64,11 @@ export default function GetStartedPage() {
       </div>
 
       {/* Main Content Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 ">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 mt-5 ">
+        <div className="grid lg:grid-cols-2 gap-12 items-start ">
           {/* Left Side - Info + Checklist */}
           <motion.div
-            className="space-y-8 border border-red-600"
+            className="space-y-8 mx-auto"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -77,23 +77,7 @@ export default function GetStartedPage() {
               visible: { transition: { staggerChildren: 0.25 } },
             }}
           >
-            {/* Info Card */}
-            <motion.div
-              variants={fadeUp}
-              className="bg-red-600 text-white p-4 rounded-sm"
-            >
-              <div className="flex items-center justify-center space-x-2">
-                <Users className="w-5 h-5" />
-                <span className="font-bold text-lg">
-                  Limited spots remaining!
-                </span>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="bg-white p-8 border border-gray-200"
-            >
+            <motion.div variants={fadeUp} className="bg-white p-8 ">
               <div className="text-center mb-8">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-4">
                   <MessageSquare className="w-8 h-8 text-white" />

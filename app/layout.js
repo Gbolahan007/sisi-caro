@@ -63,10 +63,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        <Toaster position="top-center" />
-        {children}
-        <Footer />
+        <div className="overflow-x-hidden">
+          <Header />
+          <Toaster position="top-center" />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

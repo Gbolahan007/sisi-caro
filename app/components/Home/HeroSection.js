@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Poppins, Kaushan_Script } from "next/font/google";
+import Link from "next/link";
 
 const poppins = Poppins({
   weight: ["400", "600", "700", "800"],
@@ -39,7 +40,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-4xl sm:text-[2.5rem] md:text-[3rem] lg:text-7xl font-extrabold mb-6 leading-tight tracking-tight"
+          className="text-4xl sm:text-[2.5rem] md:text-[3rem] lg:text-5xl font-extrabold mb-6 leading-tight tracking-tight"
         >
           Scale Your Brand with
           <span className="block mt-2">
@@ -79,26 +80,30 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center sm:mb-12 md:mb-16 relative"
         >
           {/* Primary CTA */}
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-sm text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2"
-            aria-label="Start free strategy call"
-          >
-            <span>Start with a free clarity call</span>
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </motion.button>
+          <Link href="/contact">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="group bg-gradient-to-r from-red-500 via-red-600 to-red-700 hover:from-red-600 hover:via-red-700 hover:to-red-800 text-white font-semibold px-8 py-4 rounded-sm text-lg sm:text-xl shadow-2xl hover:shadow-red-500/25 transition-all duration-300 flex items-center space-x-2 cursor-pointer"
+              aria-label="Start free strategy call"
+            >
+              <span>Start with a free clarity call</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </motion.button>
+          </Link>
 
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300 }}
-            className="group bg-white text-black hover:text-red-500 font-medium px-6 py-4 rounded-sm text-lg sm:text-xl border-2 border-white hover:border-red-500/50 transition-all duration-300"
-            aria-label="Explore services"
-          >
-            Explore Our Services
-          </motion.button>
+          <Link href="/services">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className="group bg-white text-black hover:text-red-500 font-medium px-6 py-4 rounded-sm text-lg sm:text-xl border-2 border-white hover:border-red-500/50 transition-all duration-300 flex items-center justify-center cursor-pointer"
+              aria-label="Explore services"
+            >
+              Explore Our Services
+            </motion.button>
+          </Link>
 
           <motion.div
             animate={{ y: [0, -12, 0], rotate: [0, 5, 0] }}
