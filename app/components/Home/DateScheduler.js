@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 
 function generateAvailableDates() {
   const today = new Date();
-  const endOfYear = new Date(today.getFullYear(), 11, 31); // Dec 31
+  const endOfYear = new Date(today.getFullYear(), 11, 31);
   const result = [];
 
   let current = new Date(today);
@@ -36,7 +36,7 @@ function generateAvailableDates() {
     }
 
     result.push(...chosenDays);
-    current.setDate(current.getDate() + 7); // Move to next week
+    current.setDate(current.getDate() + 7);
   }
 
   return result.sort();
@@ -49,7 +49,7 @@ export function DateScheduler() {
   const [selectedTime, setSelectedTime] = useState(null);
   const [showUserForm, setShowUserForm] = useState(false);
   const [userDetails, setUserDetails] = useState({ name: "", email: "" });
-  const [loading, setLoading] = useState(false); // spinner state
+  const [loading, setLoading] = useState(false);
 
   const disabledMatcher = (date) => {
     const dateString = date.toISOString().split("T")[0];
@@ -114,7 +114,7 @@ export function DateScheduler() {
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center overflow-x-hidden">
       <div className="w-full max-w-xl">
         <div className="bg-white/80 backdrop-blur-xl relative overflow-hidden rounded-2xl p-4">
           <div className="relative z-10">

@@ -65,7 +65,19 @@ export default function RootLayout({ children }) {
       >
         <div className="overflow-x-hidden">
           <Header />
-          <Toaster position="top-center" />
+          <Toaster
+            position="top-center"
+            containerStyle={{
+              left: 16,
+              right: 16,
+            }}
+            toastOptions={{
+              style: {
+                maxWidth: "calc(100vw - 32px)",
+                wordBreak: "break-word",
+              },
+            }}
+          />
           {children}
           <Footer />
         </div>
