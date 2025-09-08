@@ -13,7 +13,12 @@ const mobileMenuVariants = {
   open: {
     x: "0%",
     opacity: 1,
-    transition: { type: "spring", stiffness: 400, damping: 40 },
+    transition: {
+      type: "spring",
+      stiffness: 120,
+      damping: 20,
+      mass: 0.8,
+    },
   },
 };
 
@@ -36,7 +41,6 @@ export default function MobileMenu({ open, setOpen }) {
     <AnimatePresence>
       {open && (
         <>
-          {/* Overlay */}
           <motion.div
             variants={overlayVariants}
             initial="closed"

@@ -83,7 +83,7 @@ export default function GetStartedPage() {
             }}
           >
             <motion.div
-              className="bg-red-600 text-white p-4 rounded-lg shadow-lg transform rotate-1 hover:rotate-0 transition-transform duration-300"
+              className="bg-red-600 text-white p-4 rounded-lg shadow-lg transform "
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
