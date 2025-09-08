@@ -64,11 +64,11 @@ export default function GetStartedPage() {
       </div>
 
       {/* Main Content Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 mt-5 ">
-        <div className="grid lg:grid-cols-2 gap-12 items-start ">
+      <div className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-16 mt-5 ">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto  px-4 sm:px-6">
           {/* Left Side - Info + Checklist */}
           <motion.div
-            className="space-y-8 mx-auto"
+            className="space-y-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -82,7 +82,7 @@ export default function GetStartedPage() {
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-4">
                   <MessageSquare className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Complimentary 30-Minute Strategy Call
                 </h2>
                 <p className="text-lg text-gray-600">
@@ -96,7 +96,7 @@ export default function GetStartedPage() {
                 </div>
               </div>
 
-              <p className="text-gray-700 text-lg leading-relaxed mb-8">
+              <p className="text-gray-700 text-lg text-center leading-relaxed mb-8">
                 Together, we’ll review your goals, outline a tailored action
                 plan, and answer any questions you may have.
               </p>

@@ -56,14 +56,11 @@ export default function HomeTestimonialSection() {
   return (
     <div className="min-h-screen mt-6 bg-black text-white relative overflow-hidden">
       {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[length:50px_50px]" />
-      </div>
-
-      <section className="min-h-screen flex flex-col justify-center p-6 lg:p-16 relative z-10">
+      <div className="absolute inset-0 opacity-5"></div>
+      <section className="min-h-screen flex flex-col justify-center  p-6 lg:p-16 relative z-10">
         {/* Heading */}
         <motion.div
-          className="text-center mb-11"
+          className="text-center mb-8 lg:mb-11"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -107,9 +104,9 @@ export default function HomeTestimonialSection() {
         {/* Main testimonial */}
         <div className="flex-1 flex flex-col items-center justify-center">
           <div className="max-w-5xl w-full">
-            <div className="relative p-8 lg:p-12 shadow-2xl">
+            <div className="relative p-4 lg:p-10 ">
               <motion.div
-                className="flex justify-center mb-5"
+                className="flex justify-center mb-5 "
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6 }}
