@@ -65,7 +65,7 @@ export default function GetStartedPage() {
 
       {/* Main Content Section */}
       <div className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-16 mt-5 ">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto  px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl sm:px-6">
           {/* Left Side - Info + Checklist */}
           <motion.div
             className="space-y-8"
@@ -77,10 +77,10 @@ export default function GetStartedPage() {
               visible: { transition: { staggerChildren: 0.25 } },
             }}
           >
-            <motion.div variants={fadeUp} className="bg-white p-8 ">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-4">
-                  <MessageSquare className="w-8 h-8 text-white" />
+            <motion.div variants={fadeUp} className="bg-white p-8">
+              <div className="text-center mb-8 ">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-4 ">
+                  <MessageSquare className="w-8 h-8 text-white " />
                 </div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Complimentary 30-Minute Strategy Call
