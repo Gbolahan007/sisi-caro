@@ -48,7 +48,7 @@ export default function GetStartedPage() {
 
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl font-bold text-white mb-6"
+            className="text-5xl md:text-7xl font-bold text-white mb-6 "
           >
             Get Started <span className="text-red-500">Today</span>
           </motion.h1>
@@ -65,7 +65,7 @@ export default function GetStartedPage() {
 
       {/* Main Content Section */}
       <div className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-16 mt-5 ">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 items-center sm:px-6">
           {/* Left Side - Info + Checklist */}
           <motion.div
             className="space-y-8"

@@ -57,7 +57,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className={`${kau.className} text-xl sm:text-[1.6rem] md:text-[1.8rem] lg:text-3xl mb-6 text-white/90`}
         >
-          Strategy. Structure. Support. Built for Nigerian entrepreneurs.
+          Strategy. Structure. Support. Built for African entrepreneurs.
         </motion.h2>
 
         {/* Description */}
