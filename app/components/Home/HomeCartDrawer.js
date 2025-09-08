@@ -27,9 +27,10 @@ export default function HomeCartDrawer({ open, onClose }) {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed top-0 right-0 w-96 max-w-[90vw] h-full bg-white z-50 shadow-2xl flex flex-col"
+            transition={{ type: "spring", damping: 25 }}
+            className="fixed top-0 right-0 w-full h-full bg-white z-50 shadow-2xl flex flex-col border-2 border-red-700"
           >
+            {/* Header */}
             <div className="p-6 border-b border-gray-200 flex justify-between items-center">
               <h2 className="text-lg font-bold text-black">Your Cart</h2>
               <button onClick={onClose} className="text-sm text-gray-600">
@@ -38,13 +39,28 @@ export default function HomeCartDrawer({ open, onClose }) {
             </div>
 
             {/* Cart Items */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <motion.div
+              className="flex-1 overflow-y-auto p-6 space-y-4"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: 1,
+                  transition: { staggerChildren: 0.1 },
+                },
+              }}
+            >
               {items.length === 0 ? (
                 <p className="text-gray-500 text-sm">Your cart is empty.</p>
               ) : (
                 items.map((item) => (
-                  <div
+                  <motion.div
                     key={item.id}
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
                     className="flex justify-between items-center border-b pb-3"
                   >
                     <div>
@@ -61,10 +77,10 @@ export default function HomeCartDrawer({ open, onClose }) {
                     >
                       Remove
                     </button>
-                  </div>
+                  </motion.div>
                 ))
               )}
-            </div>
+            </motion.div>
 
             {/* Footer */}
             <div className="p-6 border-t border-gray-200">

@@ -18,6 +18,8 @@ const mobileMenuVariants = {
       stiffness: 120,
       damping: 20,
       mass: 0.8,
+      when: "beforeChildren",
+      staggerChildren: 0.1,
     },
   },
 };
@@ -25,6 +27,11 @@ const mobileMenuVariants = {
 const overlayVariants = {
   closed: { opacity: 0, transition: { duration: 0.2 } },
   open: { opacity: 1, transition: { duration: 0.3 } },
+};
+
+const itemVariants = {
+  closed: { x: 30, opacity: 0 },
+  open: { x: 0, opacity: 1 },
 };
 
 export default function MobileMenu({ open, setOpen }) {
@@ -41,6 +48,7 @@ export default function MobileMenu({ open, setOpen }) {
     <AnimatePresence>
       {open && (
         <>
+          {/* Overlay */}
           <motion.div
             variants={overlayVariants}
             initial="closed"
@@ -56,7 +64,7 @@ export default function MobileMenu({ open, setOpen }) {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed top-0 right-0 h-full w-80 max-w-[85vw] sm:w-96 sm:max-w-[95vw] bg-white shadow-2xl z-50 lg:hidden border-l border-gray-100"
+            className="fixed top-0 right-0 h-full w-full  sm:w-96 sm:max-w-[95vw] bg-white shadow-2xl z-50 lg:hidden border-l border-gray-100 flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-100">
@@ -73,15 +81,13 @@ export default function MobileMenu({ open, setOpen }) {
               </button>
             </div>
 
-            {/* Nav Items */}
-            <ul className="py-8 space-y-2">
+            {/* Nav + CTA grouped animation */}
+            <motion.ul
+              variants={mobileMenuVariants}
+              className="flex-1 py-8 space-y-2"
+            >
               {navItems.map((item, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ x: 50, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.1 + 0.2 }}
-                >
+                <motion.li key={index} variants={itemVariants}>
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
@@ -95,29 +101,26 @@ export default function MobileMenu({ open, setOpen }) {
                   </Link>
                 </motion.li>
               ))}
-            </ul>
 
-            {/* CTA */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.6, duration: 0.4 }}
-              className="mt-8 mx-4 p-6 bg-black/5 rounded-xl border border-gray-100"
-            >
-              <h3 className="text-sm font-semibold text-black mb-2">
-                Ready to Grow?
-              </h3>
-              <p className="text-xs text-gray-600 mb-4">
-                Get a free digital marketing consultation
-              </p>
-              <Link
-                href="/get-started"
-                onClick={() => setOpen(false)}
-                className="block w-full bg-red-500 text-white text-center py-3 rounded-lg font-medium transition-all duration-300 hover:bg-red-600 hover:shadow-lg"
-              >
-                Start Your Journey
-              </Link>
-            </motion.div>
+              {/* CTA (joins stagger group) */}
+              <motion.li variants={itemVariants}>
+                <div className="mt-8 mx-4 p-6 bg-black/5 rounded-xl border border-gray-100">
+                  <h3 className="text-sm font-semibold text-black mb-2">
+                    Ready to Grow?
+                  </h3>
+                  <p className="text-xs text-gray-600 mb-4">
+                    Get a free digital marketing consultation
+                  </p>
+                  <Link
+                    href="/get-started"
+                    onClick={() => setOpen(false)}
+                    className="block w-full bg-red-500 text-white text-center py-3 rounded-lg font-medium transition-all duration-300 hover:bg-red-600 hover:shadow-lg"
+                  >
+                    Start Your Journey
+                  </Link>
+                </div>
+              </motion.li>
+            </motion.ul>
           </motion.div>
         </>
       )}
