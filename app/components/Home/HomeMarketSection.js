@@ -3,66 +3,13 @@
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Building,
-  Globe,
-  Laptop,
-  Layers,
-  Lightbulb,
-  Monitor,
-  MousePointer,
-  Search,
-  Target,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { useServices } from "@/app/Queryhooks/useServices";
 
 export default function ServicesSection() {
   const router = useRouter();
-
-  const services = [
-    {
-      icon: Monitor,
-      title: "Self-Drive Strategy",
-      slug: "self-drive-strategy",
-    },
-    {
-      icon: Lightbulb,
-      title: "Who Will Do the Work?",
-      slug: "who-will-do-the-work",
-    },
-    { icon: Globe, title: "Socials by Sisi", slug: "socials-by-sisi" },
-    {
-      icon: Search,
-      title: "WhatsApp Business Optimization",
-      slug: "whatsapp-business-optimization",
-    },
-    {
-      icon: Layers,
-      title: "Service | Product Menu Design",
-      slug: "service-product-menu-design",
-    },
-    {
-      icon: Building,
-      title: "Monthly Engagement Boost",
-      slug: "monthly-engagement-boost",
-    },
-    {
-      icon: Target,
-      title: "Customer Service Message Bank",
-      slug: "customer-service-message-bank",
-    },
-    {
-      icon: Laptop,
-      title: "Monthly Content Planner + Call",
-      slug: "monthly-content-planner-call",
-    },
-    {
-      icon: MousePointer,
-      title: "Sales | Promo Campaign Launch",
-      slug: "sales-promo-campaign-launch",
-    },
-  ];
+  const { services, isLoading } = useServices();
 
   return (
     <div className="bg-white py-6 lg:py-6">
@@ -93,34 +40,44 @@ export default function ServicesSection() {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
-            return (
-              <motion.div
-                key={service.slug}
-                onClick={() => router.push(`/services/${service.slug}`)}
-                className="group flex items-center gap-4 border border-gray-200 rounded-full p-4 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.15,
-                  ease: "easeOut",
-                }}
-                viewport={{ once: true }}
-              >
-                {/* Icon Circle */}
-                <div className="w-12 h-12 bg-black group-hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-300 border-2">
-                  <IconComponent className="w-6 h-6 text-white" />
-                </div>
+          {isLoading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <motion.div
+                  key={index}
+                  className="h-20 bg-gray-200 rounded-full animate-pulse"
+                />
+              ))
+            : services.map((service, index) => {
+                const IconComponent =
+                  // fallback to ArrowRight if no matching icon
+                  require("lucide-react")[service.icon?.trim()] || ArrowRight;
 
-                {/* Text */}
-                <h3 className="text-lg font-semibold text-gray-800">
-                  {service.title}
-                </h3>
-              </motion.div>
-            );
-          })}
+                return (
+                  <motion.div
+                    key={service.slug}
+                    onClick={() => router.push(`/services/${service.slug}`)}
+                    className="group flex items-center gap-4 border border-gray-200 rounded-full p-4 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: index * 0.15,
+                      ease: "easeOut",
+                    }}
+                    viewport={{ once: true }}
+                  >
+                    {/* Icon Circle */}
+                    <div className="w-12 h-12 bg-black group-hover:bg-red-600 rounded-full flex items-center justify-center transition-colors duration-300 border-2">
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+
+                    {/* Text */}
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      {service.title}
+                    </h3>
+                  </motion.div>
+                );
+              })}
         </div>
 
         {/* CTA Button */}

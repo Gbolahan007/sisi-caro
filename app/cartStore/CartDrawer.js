@@ -17,6 +17,7 @@ export default function CartDrawer({ open, setOpen }) {
 
   useEffect(() => setMounted(true), []);
 
+  console.log(items);
   const formatCurrency = (amount) =>
     new Intl.NumberFormat("en-NG", {
       style: "currency",
@@ -101,10 +102,7 @@ export default function CartDrawer({ open, setOpen }) {
                     <div className="flex items-center gap-4">
                       <div className="text-right">
                         <span className="font-semibold text-gray-900">
-                          {formatCurrency(
-                            Number(item.price.replace(/[₦,]/g, "")) *
-                              item.quantity
-                          )}
+                          {formatCurrency(Number(item?.price) * item.quantity)}
                         </span>
                       </div>
 

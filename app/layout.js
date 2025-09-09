@@ -3,6 +3,7 @@ import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
+import ReactQueryProvider from "./contexts/ReactQueryProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -63,24 +64,26 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="overflow-x-hidden">
-          <Header />
-          <Toaster
-            position="top-center"
-            containerStyle={{
-              left: 16,
-              right: 16,
-            }}
-            toastOptions={{
-              style: {
-                maxWidth: "calc(100vw - 32px)",
-                wordBreak: "break-word",
-              },
-            }}
-          />
-          {children}
-          <Footer />
-        </div>
+        <ReactQueryProvider>
+          <div className="overflow-x-hidden">
+            <Header />
+            <Toaster
+              position="top-center"
+              containerStyle={{
+                left: 16,
+                right: 16,
+              }}
+              toastOptions={{
+                style: {
+                  maxWidth: "calc(100vw - 32px)",
+                  wordBreak: "break-word",
+                },
+              }}
+            />
+            {children}
+            <Footer />
+          </div>
+        </ReactQueryProvider>
       </body>
     </html>
   );

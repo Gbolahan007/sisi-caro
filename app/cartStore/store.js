@@ -81,9 +81,7 @@ const useCartStore = create()(
       getCartTotal: () => {
         const { items } = get();
         return items.reduce((total, item) => {
-          // Extract numeric value from price string (₦150,550 -> 150550)
-          const price = Number.parseFloat(item.price.replace(/[₦,]/g, ""));
-          return total + price * item.quantity;
+          return total + item.price * item.quantity;
         }, 0);
       },
 

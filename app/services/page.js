@@ -16,101 +16,32 @@ import {
   CheckCircle,
 } from "lucide-react";
 import Image from "next/image";
+import { useServices } from "../Queryhooks/useServices";
+import { useRouter } from "next/navigation";
 
 const ServicesPage = () => {
-  // All services data (core + add-ons)
-  const services = [
-    // Core Services
-    {
-      id: 1,
-      title: "Self-Drive Strategy",
-      type: "core",
-      description:
-        "A 4-week 1-on-1 strategy experience with weekly calls, templates, and a 90-day blueprint",
-      icon: Target,
-      slug: "self-drive-strategy",
-    },
-    {
-      id: 2,
-      title: "Who Will Do the Work?",
-      type: "core",
-      description:
-        "Done-for-you brand & content management from strategy to execution",
-      icon: Users,
-      slug: "done-for-you",
-    },
-    {
-      id: 3,
-      title: "Socials by Sisi",
-      type: "core",
-      description:
-        "Monthly content planning with strategy-backed storytelling and design",
-      icon: Smartphone,
-      slug: "socials-by-sisi",
-    },
-    // Add-on Services
-    {
-      id: 4,
-      title: "WhatsApp Business Optimization",
-      type: "addon",
-      description:
-        "Set up your WhatsApp Business to convert and inform with optimized flows",
-      icon: MessageCircle,
-      slug: "whatsapp-optimization",
-    },
-    {
-      id: 5,
-      title: "Service | Product Menu Design",
-      type: "addon",
-      description:
-        "Well-designed visual menu that helps clients know what you offer",
-      icon: Menu,
-      slug: "menu-design",
-    },
-    {
-      id: 6,
-      title: "Monthly Engagement Boost",
-      type: "addon",
-      description:
-        "Advertise your product/service via Sisi Caro's platform without ads budget",
-      icon: TrendingUp,
-      slug: "engagement-boost",
-    },
-    {
-      id: 7,
-      title: "Customer Service Message Bank",
-      type: "addon",
-      description:
-        "Ready-to-use response templates for professional customer handling",
-      icon: Headphones,
-      slug: "message-bank",
-    },
-    {
-      id: 8,
-      title: "Monthly Content Planner + Call",
-      type: "addon",
-      description:
-        "Custom 30-day calendar and caption ideas with monthly strategy calls",
-      icon: Calendar,
-      slug: "content-planner",
-    },
-    {
-      id: 9,
-      title: "Sales | Promo Campaign Launch",
-      type: "addon",
-      description:
-        "Complete campaign strategy, creative assets, and rollout guide",
-      icon: Megaphone,
-      slug: "campaign-launch",
-    },
-  ];
+  const { services: servicesL, isLoading } = useServices();
+  console.log(servicesL);
+  const router = useRouter();
+
+  const icons = {
+    Target,
+    Users,
+    Smartphone,
+    MessageCircle,
+    Menu,
+    TrendingUp,
+    Headphones,
+    Calendar,
+    Megaphone,
+  };
 
   const handleServiceClick = (service) => {
-    console.log(`Navigating to ${service.slug}`);
+    router.push(`/services/${service.slug}`);
   };
 
   const ServiceCard = ({ service, index }) => {
-    const IconComponent = service.icon;
+    const IconComponent = icons[service.icon] || Target;
 
     return (
       <motion.div
@@ -150,8 +81,19 @@ const ServicesPage = () => {
     );
   };
 
-  const coreServices = services.filter((service) => service.type === "core");
-  const addonServices = services.filter((service) => service.type === "addon");
+  // Skeleton loader for cards
+  const SkeletonCard = () => (
+    <div className="bg-white p-8 border border-gray-100 animate-pulse">
+      <div className="w-16 h-16 bg-gray-300 rounded-full mb-6"></div>
+      <div className="h-5 bg-gray-300 rounded w-3/4 mb-4"></div>
+      <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+      <div className="h-4 bg-gray-200 rounded w-5/6 mb-6"></div>
+      <div className="w-8 h-8 bg-gray-300 rounded-full ml-auto"></div>
+    </div>
+  );
+
+  const coreServices = servicesL?.filter((s) => s.type === "core") || [];
+  const addonServices = servicesL?.filter((s) => s.type === "addon") || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -230,11 +172,19 @@ const ServicesPage = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20 ">
-          {coreServices.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {[...Array(3)].map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            {coreServices.map((service, index) => (
+              <ServiceCard key={service.id} service={service} index={index} />
+            ))}
+          </div>
+        )}
 
         {/* Add-on Services Section */}
         <motion.div
@@ -258,11 +208,19 @@ const ServicesPage = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {addonServices.map((service, index) => (
-            <ServiceCard key={service.id} service={service} index={index} />
-          ))}
-        </div>
+        {isLoading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[...Array(3)].map((_, i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {addonServices.map((service, index) => (
+              <ServiceCard key={service.id} service={service} index={index} />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

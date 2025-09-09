@@ -15,61 +15,8 @@ import {
 } from "@/components/ui/card";
 import { Users, Zap, Target, ShoppingCart, Plus, Minus } from "lucide-react";
 import toast from "react-hot-toast";
-
-// -------------------- Data --------------------
-const services = [
-  {
-    id: 1,
-    title: "Self-Drive Strategy",
-    description:
-      "A 4-week 1-on-1 strategy experience with weekly calls, personalized planning templates, and a 90-day blueprint.",
-    price: "₦150,550",
-    duration: "1-month service",
-    icon: Target,
-    features: [
-      "Weekly tailored calls",
-      "Strategy dossier + blueprint",
-      "WhatsApp support group",
-      "Early access pass",
-    ],
-    bestFor:
-      "Entrepreneurs who need clarity and direction but want to stay in charge of implementation.",
-  },
-  {
-    id: 2,
-    title: "Who Will Do the Work?",
-    description:
-      "Done-for-you brand & content management with strategy calls, design, captions, and full execution.",
-    price: "₦350,550",
-    duration: "per month",
-    icon: Users,
-    features: [
-      "Complete brand management",
-      "Monthly rollout plans",
-      "Design & execution",
-      "Priority team access",
-    ],
-    bestFor:
-      "Busy founders who want everything handled from strategy to execution.",
-  },
-  {
-    id: 3,
-    title: "Socials by Sisi",
-    description:
-      "Monthly content planning with caption writing, strategy-backed storytelling, and up to 12 posts monthly.",
-    price: "₦150,000",
-    duration: "per month",
-    icon: Zap,
-    features: [
-      "Monthly content planning",
-      "Caption writing + design",
-      "Strategy-backed storytelling",
-      "Up to 12 posts monthly",
-    ],
-    bestFor:
-      "Business owners who want to stay visible without burnout and with intentional content.",
-  },
-];
+import { useServices } from "@/app/Queryhooks/useServices";
+import { formatCurrency } from "@/app/hooks/useCurrency";
 
 // -------------------- Service Card --------------------
 function ServiceCard({
@@ -82,7 +29,8 @@ function ServiceCard({
   isHydrated,
   index,
 }) {
-  const Icon = service.icon;
+  const icons = { Users, Zap, Target };
+  const Icon = icons[service.icon?.trim()] || Target;
 
   const handleSubscribe = (e) => {
     e.stopPropagation();
@@ -117,7 +65,7 @@ function ServiceCard({
       viewport={{ once: true }}
       className="h-full"
     >
-      <Link href={`/services/${service.id}`} className="block h-full">
+      <Link href={`/services/${service.slug}`} className="block h-full">
         <Card className="group relative flex flex-col justify-between h-full border border-gray-200 bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer overflow-hidden">
           {/* Subtle gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-br from-red-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -130,10 +78,11 @@ function ServiceCard({
               </div>
               <div>
                 <div className="text-xl font-bold text-red-600 mb-1">
-                  {service.price}
+                  {" "}
+                  {service.price ? formatCurrency(service.price) : "—"}
                 </div>
                 <div className="text-sm font-medium text-gray-500 uppercase tracking-wide">
-                  {service.duration}
+                  {service.price_unit || "Service"}
                 </div>
               </div>
             </div>
@@ -155,25 +104,16 @@ function ServiceCard({
                   Key Features
                 </h4>
                 <ul className="space-y-1.5">
-                  {service.features.map((feature, index) => (
+                  {service.service_features?.map((f, idx) => (
                     <li
-                      key={index}
+                      key={idx}
                       className="text-sm text-gray-600 flex items-center gap-2"
                     >
                       <div className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0" />
-                      <span>{feature}</span>
+                      <span>{f.feature}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-
-              <div className="p-3 bg-gray-50 rounded-lg border border-gray-100">
-                <p className="text-sm text-gray-700">
-                  <span className="font-semibold text-gray-900">
-                    Perfect for:
-                  </span>{" "}
-                  {service.bestFor}
-                </p>
               </div>
             </div>
 
@@ -231,6 +171,7 @@ function ServiceCard({
 
 // -------------------- Main Component --------------------
 export default function HomeServices() {
+  const { services, isLoading } = useServices();
   const [isHydrated, setIsHydrated] = useState(false);
 
   const {
@@ -265,27 +206,30 @@ export default function HomeServices() {
         </motion.header>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-          {services.map((service, index) => (
-            <div
-              key={service.id}
-              className={
-                index === services.length - 1
-                  ? "sm:col-span-2 lg:col-span-1"
-                  : ""
-              }
-            >
-              <ServiceCard
-                service={service}
-                inCart={isHydrated ? isInCart(service.id) : false}
-                quantity={isHydrated ? getItemQuantity(service.id) : 0}
-                onAdd={() => addItem(service)}
-                onInc={() => incrementQuantity(service.id)}
-                onDec={() => decrementQuantity(service.id)}
-                isHydrated={isHydrated}
-                index={index}
-              />
-            </div>
-          ))}
+          {services
+            ?.filter((s) => s.type === "core")
+            .slice(0, 3)
+            .map((service, index, coreServices) => (
+              <div
+                key={service.id}
+                className={
+                  index === coreServices.length - 1
+                    ? "sm:col-span-2 lg:col-span-1"
+                    : ""
+                }
+              >
+                <ServiceCard
+                  service={service}
+                  inCart={isHydrated ? isInCart(service.id) : false}
+                  quantity={isHydrated ? getItemQuantity(service.id) : 0}
+                  onAdd={() => addItem(service)}
+                  onInc={() => incrementQuantity(service.id)}
+                  onDec={() => decrementQuantity(service.id)}
+                  isHydrated={isHydrated}
+                  index={index}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </section>
