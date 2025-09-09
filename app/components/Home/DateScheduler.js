@@ -7,39 +7,30 @@ import toast from "react-hot-toast";
 
 function generateAvailableDates() {
   const today = new Date();
-  const endOfYear = new Date(today.getFullYear(), 11, 31);
-  const result = [];
+  today.setHours(0, 0, 0, 0); // normalize to start of today
 
+  const endOfYear = new Date(today.getFullYear(), 11, 31);
+  endOfYear.setHours(0, 0, 0, 0);
+
+  const result = [];
   let current = new Date(today);
 
   while (current <= endOfYear) {
-    // Start of the week (Sunday)
-    const weekStart = new Date(current);
-    weekStart.setDate(current.getDate() - current.getDay());
+    const day = current.getDay(); // 0 = Sun, 6 = Sat
 
-    // Collect all 7 days of this week
-    const days = Array.from({ length: 7 }, (_, i) => {
-      const d = new Date(weekStart);
-      d.setDate(weekStart.getDate() + i);
-      return d;
-    });
+    if (day >= 1 && day <= 5) {
+      const isToday = current.toDateString() === today.toDateString();
 
-    // Pick 3 random days from this week
-    const chosenDays = [];
-    while (chosenDays.length < 3) {
-      const randomIndex = Math.floor(Math.random() * days.length);
-      const chosen = days[randomIndex];
-      const iso = chosen.toISOString().split("T")[0];
-      if (!chosenDays.includes(iso) && chosen >= today && chosen <= endOfYear) {
-        chosenDays.push(iso);
+      // Skip if today after 5 PM
+      if (!(isToday && new Date().getHours() >= 17)) {
+        result.push(current.toISOString().split("T")[0]);
       }
     }
 
-    result.push(...chosenDays);
-    current.setDate(current.getDate() + 7);
+    current.setDate(current.getDate() + 1);
   }
 
-  return result.sort();
+  return result;
 }
 
 const availableDates = generateAvailableDates();

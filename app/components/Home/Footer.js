@@ -32,36 +32,37 @@ const Footer = () => {
     {
       icon: Search,
       title: "WhatsApp Business Optimization",
-      slug: "whatsapp-business-optimization",
+      slug: "whatsapp-optimization",
     },
     {
       icon: Layers,
       title: "Service | Product Menu Design",
-      slug: "service-product-menu-design",
+      slug: "service-design",
     },
     {
       icon: Building,
       title: "Monthly Engagement Boost",
-      slug: "monthly-engagement-boost",
+      slug: "engagement-boost",
     },
     {
       icon: Target,
       title: "Customer Service Message Bank",
-      slug: "customer-service-message-bank",
+      slug: "customer-service-bank",
     },
     {
       icon: Laptop,
       title: "Monthly Content Planner + Call",
-      slug: "monthly-content-planner-call",
+      slug: "content-planner",
     },
     {
       icon: MousePointer,
       title: "Sales | Promo Campaign Launch",
-      slug: "sales-promo-campaign-launch",
+      slug: "sales-promo-campaign",
     },
   ];
 
   const quickLinks = [
+    { title: "Home", href: "/" },
     { title: "About Us", href: "/about" },
     { title: "Services", href: "/services" },
     { title: "Contact", href: "/contact" },
