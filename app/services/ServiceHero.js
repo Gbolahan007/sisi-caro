@@ -13,7 +13,7 @@ export default function ServiceHero({ service, onSubscribe }) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/digi.WEBP"
+          src="/digi.webp"
           alt={service.title}
           fill
           className="object-cover"

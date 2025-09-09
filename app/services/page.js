@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic"; // force runtime rendering on Vercel
-
 import React from "react";
 import { motion } from "framer-motion";
 import {
