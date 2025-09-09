@@ -17,7 +17,6 @@ export default function CartDrawer({ open, setOpen }) {
 
   useEffect(() => setMounted(true), []);
 
-  console.log(items);
   const formatCurrency = (amount) =>
     new Intl.NumberFormat("en-NG", {
       style: "currency",

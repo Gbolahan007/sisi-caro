@@ -114,11 +114,10 @@ export default function ServiceContent({ service, onSubscribe }) {
             </div>
           )}
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 w-full sm:w-auto">
             <Button
               onClick={onSubscribe}
-              className="bg-red-600 text-white hover:bg-red-700 px-8 py-3 rounded-lg font-semibold transition-all transform hover:scale-105"
+              className="flex items-center justify-center bg-red-600 text-white hover:bg-red-700 px-6 py-3 rounded-md font-semibold transition-transform duration-200 hover:scale-105 w-full sm:w-auto"
             >
               <ShoppingCart className="mr-2 h-5 w-5" />
               Subscribe Now
@@ -127,7 +126,7 @@ export default function ServiceContent({ service, onSubscribe }) {
             <Link href="/contact" passHref>
               <Button
                 variant="outline"
-                className="border-black text-black hover:bg-black hover:text-white px-8 py-3 rounded-lg font-semibold transition-all"
+                className="flex items-center justify-center border border-black text-black hover:bg-gray-100 px-6 py-3 rounded-md font-semibold transition-transform duration-200 hover:scale-105 w-full sm:w-auto"
               >
                 Contact Us
               </Button>

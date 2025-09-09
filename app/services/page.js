@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = "force-dynamic"; // force runtime rendering on Vercel
+
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -21,7 +23,6 @@ import { useRouter } from "next/navigation";
 
 const ServicesPage = () => {
   const { services: servicesL, isLoading } = useServices();
-  console.log(servicesL);
   const router = useRouter();
 
   const icons = {
@@ -41,7 +42,7 @@ const ServicesPage = () => {
   };
 
   const ServiceCard = ({ service, index }) => {
-    const IconComponent = icons[service.icon] || Target;
+    const IconComponent = icons?.[service?.icon] ?? Target;
 
     return (
       <motion.div
@@ -63,12 +64,12 @@ const ServicesPage = () => {
 
         {/* Title */}
         <h3 className="text-xl font-bold text-black mb-4 group-hover:text-gray-800 transition-colors">
-          {service.title}
+          {service?.title}
         </h3>
 
         {/* Description */}
         <p className="text-gray-600 text-sm leading-relaxed mb-6 min-h-[3rem]">
-          {service.description}
+          {service?.description}
         </p>
 
         {/* Arrow */}
@@ -178,12 +179,14 @@ const ServicesPage = () => {
               <SkeletonCard key={i} />
             ))}
           </div>
-        ) : (
+        ) : coreServices?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {coreServices.map((service, index) => (
               <ServiceCard key={service.id} service={service} index={index} />
             ))}
           </div>
+        ) : (
+          <p className="text-gray-500 mb-20">No core services available.</p>
         )}
 
         {/* Add-on Services Section */}
@@ -214,12 +217,14 @@ const ServicesPage = () => {
               <SkeletonCard key={i} />
             ))}
           </div>
-        ) : (
+        ) : addonServices?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {addonServices.map((service, index) => (
               <ServiceCard key={service.id} service={service} index={index} />
             ))}
           </div>
+        ) : (
+          <p className="text-gray-500">No add-on services available.</p>
         )}
       </div>
     </div>
