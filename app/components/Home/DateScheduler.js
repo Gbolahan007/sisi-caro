@@ -15,10 +15,9 @@ function generateAvailableDates() {
   let current = new Date(today);
 
   while (current <= endOfYear) {
-    const day = current.getDay(); // 0 = Sun, 6 = Sat
+    const day = current.getDay();
     if (day >= 1 && day <= 5) {
       const isToday = current.toDateString() === today.toDateString();
-      // Skip if today after 5 PM
       if (!(isToday && new Date().getHours() >= 17)) {
         result.push(current.toISOString().split("T")[0]);
       }
@@ -73,7 +72,7 @@ export function DateScheduler() {
   const handleBooking = async () => {
     if (userDetails.name && userDetails.email && selectedDate && selectedTime) {
       try {
-        setLoading(true); // start spinner
+        setLoading(true);
 
         const formData = new FormData();
         formData.append("name", userDetails.name);
@@ -101,13 +100,13 @@ export function DateScheduler() {
         console.error(err);
         toast.error("Something went wrong. Please try again.");
       } finally {
-        setLoading(false); // stop spinner
+        setLoading(false);
       }
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 overflow-x-hidden">
+    <div className="flex items-center justify-center p-4 overflow-x-hidden ">
       <div className="w-full max-w-xl">
         <div className="bg-white/80 backdrop-blur-xl relative overflow-hidden rounded-2xl p-4">
           <div className="relative z-10">
@@ -143,16 +142,15 @@ export function DateScheduler() {
 
             {!showUserForm ? (
               <div className="space-y-6">
-                {/* Calendar - Fixed container */}
-                <div className="bg-white/60 rounded-xl p-4 border border-gray-200/50 overflow-hidden">
-                  <div className="w-full max-w-full overflow-hidden">
+                <div className="bg-white/60 rounded-xl  p-4 border border-gray-200/50 overflow-hidden ">
+                  <div className="w-full max-w-full overflow-hidden overflow-x-hidden  ">
                     <DayPicker
                       mode="single"
                       selected={selectedDate || undefined}
                       onSelect={handleDateSelect}
                       disabled={disabledMatcher}
                       showOutsideDays={false}
-                      className="mx-auto"
+                      className="flex justify-center mx-auto items-center overflow-x-hidden "
                       styles={{
                         root: {
                           fontSize: "14px",

@@ -105,11 +105,9 @@ export default function ServiceContent({ service, onSubscribe }) {
 
           {/* Best For */}
           {service.best_for && (
-            <div className="bg-gray-50 rounded-lg p-6 border">
+            <div className="bg-gray-50 rounded-sm p-3 border">
               <h4 className="font-semibold text-black mb-2">Best For:</h4>
-              <p className="text-gray-700 whitespace-pre-line">
-                {service.best_for}
-              </p>
+              <p className="text-gray-700">{service.best_for}</p>
             </div>
           )}
 
