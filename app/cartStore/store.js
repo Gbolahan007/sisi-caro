@@ -10,17 +10,15 @@ const useCartStore = create()(
       // Actions
       addItem: (service) => {
         const { items } = get();
-        const existingItemIndex = items.findIndex(
-          (item) => item.id === service.id
-        );
+        const existingItem = items.find((item) => item.id === service.id);
 
-        if (existingItemIndex !== -1) {
-          // Update existing item quantity
-          const updatedItems = [...items];
-          updatedItems[existingItemIndex] = {
-            ...updatedItems[existingItemIndex],
-            quantity: updatedItems[existingItemIndex].quantity + 1,
-          };
+        if (existingItem) {
+          // Update quantity if item already exists
+          const updatedItems = items.map((item) =>
+            item.id === service.id
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
           set({ items: updatedItems });
         } else {
           // Add new item
@@ -48,18 +46,24 @@ const useCartStore = create()(
 
       incrementQuantity: (serviceId) => {
         const { items } = get();
-        const item = items.find((item) => item.id === serviceId);
-        if (item) {
-          get().updateQuantity(serviceId, item.quantity + 1);
-        }
+        const updatedItems = items.map((item) =>
+          item.id === serviceId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+        set({ items: updatedItems });
       },
 
       decrementQuantity: (serviceId) => {
         const { items } = get();
-        const item = items.find((item) => item.id === serviceId);
-        if (item) {
-          get().updateQuantity(serviceId, item.quantity - 1);
-        }
+        const updatedItems = items
+          .map((item) =>
+            item.id === serviceId
+              ? { ...item, quantity: item.quantity - 1 }
+              : item
+          )
+          .filter((item) => item.quantity > 0); // remove if 0
+        set({ items: updatedItems });
       },
 
       removeItem: (serviceId) => {
@@ -80,9 +84,10 @@ const useCartStore = create()(
 
       getCartTotal: () => {
         const { items } = get();
-        return items.reduce((total, item) => {
-          return total + item.price * item.quantity;
-        }, 0);
+        return items.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
       },
 
       isInCart: (serviceId) => {

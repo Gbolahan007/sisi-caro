@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 function generateAvailableDates() {
   const today = new Date();
   today.setHours(0, 0, 0, 0); // normalize to start of today
-
   const endOfYear = new Date(today.getFullYear(), 11, 31);
   endOfYear.setHours(0, 0, 0, 0);
 
@@ -17,16 +16,13 @@ function generateAvailableDates() {
 
   while (current <= endOfYear) {
     const day = current.getDay(); // 0 = Sun, 6 = Sat
-
     if (day >= 1 && day <= 5) {
       const isToday = current.toDateString() === today.toDateString();
-
       // Skip if today after 5 PM
       if (!(isToday && new Date().getHours() >= 17)) {
         result.push(current.toISOString().split("T")[0]);
       }
     }
-
     current.setDate(current.getDate() + 1);
   }
 
@@ -39,7 +35,10 @@ export function DateScheduler() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [showUserForm, setShowUserForm] = useState(false);
-  const [userDetails, setUserDetails] = useState({ name: "", email: "" });
+  const [userDetails, setUserDetails] = useState({
+    name: "",
+    email: "",
+  });
   const [loading, setLoading] = useState(false);
 
   const disabledMatcher = (date) => {
@@ -65,7 +64,10 @@ export function DateScheduler() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setUserDetails((prev) => ({ ...prev, [name]: value }));
+    setUserDetails((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleBooking = async () => {
@@ -105,7 +107,7 @@ export function DateScheduler() {
   };
 
   return (
-    <div className="flex items-center justify-center overflow-x-hidden">
+    <div className="flex items-center justify-center min-h-screen p-4 overflow-x-hidden">
       <div className="w-full max-w-xl">
         <div className="bg-white/80 backdrop-blur-xl relative overflow-hidden rounded-2xl p-4">
           <div className="relative z-10">
@@ -119,6 +121,7 @@ export function DateScheduler() {
                   <CheckCircle className="w-7 h-7 text-white" />
                 </div>
               )}
+
               {!showUserForm ? (
                 <>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">
@@ -140,16 +143,49 @@ export function DateScheduler() {
 
             {!showUserForm ? (
               <div className="space-y-6">
-                {/* Calendar */}
-                <div className="bg-white/60 rounded-xl p-4 border border-gray-200/50">
-                  <DayPicker
-                    mode="single"
-                    selected={selectedDate || undefined}
-                    onSelect={handleDateSelect}
-                    disabled={disabledMatcher}
-                    showOutsideDays={false}
-                    className="mx-auto flex items-center justify-center"
-                  />
+                {/* Calendar - Fixed container */}
+                <div className="bg-white/60 rounded-xl p-4 border border-gray-200/50 overflow-hidden">
+                  <div className="w-full max-w-full overflow-hidden">
+                    <DayPicker
+                      mode="single"
+                      selected={selectedDate || undefined}
+                      onSelect={handleDateSelect}
+                      disabled={disabledMatcher}
+                      showOutsideDays={false}
+                      className="mx-auto"
+                      styles={{
+                        root: {
+                          fontSize: "14px",
+                          maxWidth: "100%",
+                        },
+                        month: {
+                          width: "100%",
+                          maxWidth: "100%",
+                        },
+                        table: {
+                          width: "100%",
+                          maxWidth: "100%",
+                          margin: "0 auto",
+                        },
+                        head_cell: {
+                          width: "14.28%",
+                          fontSize: "12px",
+                          padding: "4px 2px",
+                        },
+                        cell: {
+                          width: "14.28%",
+                          height: "32px",
+                          padding: "2px",
+                        },
+                        day: {
+                          width: "100%",
+                          height: "100%",
+                          fontSize: "12px",
+                          padding: "4px 2px",
+                        },
+                      }}
+                    />
+                  </div>
                 </div>
 
                 {/* Time Slots */}

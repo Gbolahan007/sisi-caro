@@ -19,6 +19,16 @@ import Image from "next/image";
 import { useServices } from "../Queryhooks/useServices";
 import { useRouter } from "next/navigation";
 
+const SkeletonCard = () => (
+  <div className="bg-white p-8 border border-gray-100 animate-pulse">
+    <div className="w-16 h-16 bg-gray-300 rounded-full mb-6"></div>
+    <div className="h-5 bg-gray-300 rounded w-3/4 mb-4"></div>
+    <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+    <div className="h-4 bg-gray-200 rounded w-5/6 mb-6"></div>
+    <div className="w-8 h-8 bg-gray-300 rounded-full ml-auto"></div>
+  </div>
+);
+
 const ServicesPage = () => {
   const { services: servicesL, isLoading } = useServices();
   const router = useRouter();
@@ -39,65 +49,13 @@ const ServicesPage = () => {
     router.push(`/services/${service.slug}`);
   };
 
-  const ServiceCard = ({ service, index }) => {
-    const IconComponent = icons?.[service?.icon] ?? Target;
-
-    return (
-      <motion.div
-        onClick={() => handleServiceClick(service)}
-        className="bg-white p-8 cursor-pointer group border border-gray-100 hover:border-gray-200"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          delay: index * 0.15,
-          ease: "easeOut",
-        }}
-        viewport={{ once: true }}
-      >
-        {/* Icon */}
-        <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-          <IconComponent className="w-8 h-8 text-white" />
-        </div>
-
-        {/* Title */}
-        <h3 className="text-xl font-bold text-black mb-4 group-hover:text-gray-800 transition-colors">
-          {service?.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-6 min-h-[3rem]">
-          {service?.description}
-        </p>
-
-        {/* Arrow */}
-        <div className="flex justify-end">
-          <div className="w-8 h-8 flex items-center justify-center group-hover:translate-x-1 transition-transform duration-300">
-            <ArrowRight className="w-5 h-5 text-black" />
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
-
-  // Skeleton loader for cards
-  const SkeletonCard = () => (
-    <div className="bg-white p-8 border border-gray-100 animate-pulse">
-      <div className="w-16 h-16 bg-gray-300 rounded-full mb-6"></div>
-      <div className="h-5 bg-gray-300 rounded w-3/4 mb-4"></div>
-      <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
-      <div className="h-4 bg-gray-200 rounded w-5/6 mb-6"></div>
-      <div className="w-8 h-8 bg-gray-300 rounded-full ml-auto"></div>
-    </div>
-  );
-
   const coreServices = servicesL?.filter((s) => s.type === "core") || [];
   const addonServices = servicesL?.filter((s) => s.type === "addon") || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section with Background Image */}
-      <div className="relative h-[550px] sm:h-[550px] w-full">
+      <div className="relative h-[550px] w-full">
         <Image
           src="/about-us.jpg"
           alt="About Us"
@@ -180,7 +138,13 @@ const ServicesPage = () => {
         ) : coreServices?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
             {coreServices.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
+              <ServiceCard
+                key={service.id}
+                service={service}
+                index={index}
+                onClick={handleServiceClick}
+                icons={icons}
+              />
             ))}
           </div>
         ) : (
@@ -218,7 +182,13 @@ const ServicesPage = () => {
         ) : addonServices?.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {addonServices.map((service, index) => (
-              <ServiceCard key={service.id} service={service} index={index} />
+              <ServiceCard
+                key={service.id}
+                service={service}
+                index={index}
+                onClick={handleServiceClick}
+                icons={icons}
+              />
             ))}
           </div>
         ) : (
@@ -230,3 +200,44 @@ const ServicesPage = () => {
 };
 
 export default ServicesPage;
+
+const ServiceCard = ({ service, index, onClick, icons }) => {
+  const IconComponent = icons?.[service?.icon] ?? Target;
+
+  return (
+    <motion.div
+      onClick={() => onClick(service)}
+      className="bg-white p-8 cursor-pointer group border border-gray-100 hover:border-gray-200"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.15,
+        ease: "easeOut",
+      }}
+      viewport={{ once: true }}
+    >
+      {/* Icon */}
+      <div className="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+        <IconComponent className="w-8 h-8 text-white" />
+      </div>
+
+      {/* Title */}
+      <h3 className="text-xl font-bold text-black mb-4 group-hover:text-gray-800 transition-colors">
+        {service?.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-gray-600 text-sm leading-relaxed mb-6 min-h-[3rem]">
+        {service?.description}
+      </p>
+
+      {/* Arrow */}
+      <div className="flex justify-end">
+        <div className="w-8 h-8 flex items-center justify-center group-hover:translate-x-1 transition-transform duration-300">
+          <ArrowRight className="w-5 h-5 text-black" />
+        </div>
+      </div>
+    </motion.div>
+  );
+};

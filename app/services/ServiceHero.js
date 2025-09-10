@@ -38,12 +38,7 @@ export default function ServiceHero({ service, onSubscribe }) {
           <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
             {service.description}
           </p>
-          <div className="flex items-baseline gap-3 justify-center mb-8">
-            <span className="text-4xl font-bold text-white">
-              {formatCurrency(service.price)}
-            </span>
-            <span className="text-gray-300 text-lg">{service.price_unit}</span>
-          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               onClick={onSubscribe}

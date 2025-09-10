@@ -28,17 +28,16 @@ export default function ServiceContent({ service, onSubscribe }) {
             />
           </div>
 
-          {/* Bundle Discount Floating Card */}
           {service.bundle_discount_available && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
-              className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-gray-200"
+              className="absolute -bottom-6 sm:-right-6 bg-white p-3 sm:p-6 rounded-sm border border-gray-200"
             >
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600">
+              <div className="flex items-center gap-3 ">
+                <div className="w-7 h-7 sm:w-10 sm:h-10 bg-red-100 rounded-full flex items-center justify-center text-red-600">
                   💡
                 </div>
                 <div>

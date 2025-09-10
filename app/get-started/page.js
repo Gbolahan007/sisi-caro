@@ -140,7 +140,6 @@ export default function GetStartedPage() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Date Scheduler */}
           <motion.div
             className="lg:sticky lg:top-8"
             initial={{ opacity: 0, x: 50 }}
