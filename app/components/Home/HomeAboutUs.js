@@ -2,8 +2,10 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Circle } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const HomeAboutUs = () => {
+  const router = useRouter();
   const imageVariants = {
     hidden: { y: 60, opacity: 0, scale: 0.95 },
     visible: {
@@ -95,9 +97,9 @@ const HomeAboutUs = () => {
                 viewport={{ once: true, amount: 0.8 }}
                 variants={textElementVariants}
               >
-                <h2 className="text-xl sm:text-xl md:text-2xl lg:text-3xl font-bold text-black leading-tight">
+                <h2 className="text-xl sm:text-xl md:text-2xl lg:text-2xl font-bold text-black leading-tight">
                   Building Stronger Brands with
-                  <span className="text-red-600 block mt-2">
+                  <span className="text-red-600 block mt-2 sm:mt-1">
                     Digital Strategy
                   </span>
                 </h2>
@@ -110,7 +112,7 @@ const HomeAboutUs = () => {
                 viewport={{ once: true, amount: 0.8 }}
                 variants={textElementVariants}
               >
-                <p className="text-base sm:text-lg md:text-xl text-gray-800">
+                <p className="text-base sm:text-lg md:text-lg text-gray-800">
                   <span className="italic text-red-500">Sisi Caro</span> is a
                   strategy-led brand and content support service for Nigerian
                   entrepreneurs. We don’t promise visibility for the sake of it
@@ -127,10 +129,10 @@ const HomeAboutUs = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.8 }}
                 variants={buttonVariants}
-                className="pt-4"
+                className="pt-3"
               >
                 <button
-                  onClick={() => (window.location.href = "/about")}
+                  onClick={() => router.push("/about")}
                   className="group relative inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-medium text-white bg-black hover:bg-red-600 rounded-sm shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 ease-out w-full sm:w-auto"
                 >
                   <span className="relative">Learn More</span>

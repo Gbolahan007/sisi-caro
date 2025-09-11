@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Plus, Minus, Trash2 } from "lucide-react";
 import useCartStore from "./store";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function CartDrawer({ open, setOpen }) {
   const items = useCartStore((state) => state.items);
@@ -14,6 +15,7 @@ export default function CartDrawer({ open, setOpen }) {
   const removeItem = useCartStore((state) => state.removeItem);
   const clearCart = useCartStore((state) => state.clearCart);
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => setMounted(true), []);
 
@@ -138,7 +140,13 @@ export default function CartDrawer({ open, setOpen }) {
                 </button>
 
                 {/* Checkout Button */}
-                <button className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-900">
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    router.push("/checkout");
+                  }}
+                  className="w-full bg-black text-white py-3 rounded-lg font-medium hover:bg-gray-900"
+                >
                   Checkout • {formatCurrency(getCartTotal())}
                 </button>
               </div>

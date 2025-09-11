@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
 import ReactQueryProvider from "./contexts/ReactQueryProvider";
+import { Montserrat } from "next/font/google";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,6 +16,11 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
+});
+
+const monst = Montserrat({
+  weight: ["400"],
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -65,7 +71,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReactQueryProvider>
-          <div className="overflow-x-hidden">
+          <div className={`${monst.className} overflow-x-hidden`}>
             <Header />
             <Toaster
               position="top-center"

@@ -47,7 +47,7 @@ export default function ServicesSection() {
                   className="h-20 bg-gray-200 rounded-full animate-pulse"
                 />
               ))
-            : services.map((service, index) => {
+            : services?.map((service, index) => {
                 const IconComponent =
                   // fallback to ArrowRight if no matching icon
                   require("lucide-react")[service.icon?.trim()] || ArrowRight;
