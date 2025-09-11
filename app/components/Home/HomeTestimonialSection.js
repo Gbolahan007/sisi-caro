@@ -80,7 +80,7 @@ export default function HomeTestimonialSection() {
             <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-red-600"></div>
           </div>
           <motion.h1
-            className="text-5xl lg:text-7xl xl:text-8xl font-bold mb-4 tracking-tight bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+            className="text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 tracking-tight bg-white bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 60 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
