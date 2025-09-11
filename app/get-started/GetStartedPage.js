@@ -13,7 +13,7 @@ const fadeUp = {
 
 export default function GetStartedPage() {
   return (
-    <div className="bg-white overflow-x-hidden">
+    <div className="bg-white overflow-x-hidden min-h-screen">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -28,7 +28,7 @@ export default function GetStartedPage() {
         </div>
 
         <motion.div
-          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center"
+          className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 text-center"
           initial="hidden"
           animate="visible"
           variants={{
@@ -38,7 +38,7 @@ export default function GetStartedPage() {
         >
           <motion.div
             variants={fadeUp}
-            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 mb-8"
+            className="inline-flex items-center bg-white/10 backdrop-blur-sm rounded-full px-4 sm:px-6 py-2 mb-6 sm:mb-8"
           >
             <Clock className="w-4 h-4 text-red-500 mr-2" />
             <span className="text-red-500 font-semibold text-sm">
@@ -48,14 +48,14 @@ export default function GetStartedPage() {
 
           <motion.h1
             variants={fadeUp}
-            className="text-5xl md:text-7xl font-bold text-white mb-6 "
+            className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight"
           >
             Get Started <span className="text-red-500">Today</span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto leading-relaxed"
+            className="text-lg sm:text-xl md:text-2xl text-gray-200 mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-4"
           >
             Take the first step towards achieving your goals with our expert
             guidance and personalized strategy session
@@ -64,11 +64,11 @@ export default function GetStartedPage() {
       </div>
 
       {/* Main Content Section */}
-      <div className="max-w-6xl mx-auto sm:px-6 lg:px-8 py-16 mt-5 ">
-        <div className="grid lg:grid-cols-2 gap-12 items-center sm:px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Side - Info + Checklist */}
           <motion.div
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -77,28 +77,31 @@ export default function GetStartedPage() {
               visible: { transition: { staggerChildren: 0.25 } },
             }}
           >
-            <motion.div variants={fadeUp} className="bg-white p-8">
-              <div className="text-center mb-8 ">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mb-4 ">
-                  <MessageSquare className="w-8 h-8 text-white " />
+            <motion.div
+              variants={fadeUp}
+              className="bg-white p-6 sm:p-8 rounded-lg shadow-sm"
+            >
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="inline-flex items-center justify-center w-14 sm:w-16 h-14 sm:h-16 bg-red-600 rounded-full mb-4">
+                  <MessageSquare className="w-7 sm:w-8 h-7 sm:h-8 text-white" />
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2 leading-tight">
                   Complimentary 30-Minute Strategy Call
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
                   Claim your FREE, no-strings-attached 30-minute strategy
                   consultation.
                 </p>
                 <div className="mt-4 p-3 bg-red-50 rounded-lg inline-block">
-                  <span className="text-red-700 font-semibold">
+                  <span className="text-red-700 font-semibold text-sm sm:text-base">
                     (valued at ₦50,000)
                   </span>
                 </div>
               </div>
 
-              <p className="text-gray-700 text-lg text-center leading-relaxed mb-8">
-                Together, we’ll review your goals, outline a tailored action
-                plan, and answer any questions you may have.
+              <p className="text-gray-700 text-base sm:text-lg text-center leading-relaxed mb-6 sm:mb-8">
+                Together, we&apos;ll review your goals, outline a tailored
+                action plan, and answer any questions you may have.
               </p>
 
               {/* Checklist Group */}
@@ -110,26 +113,28 @@ export default function GetStartedPage() {
                 className="space-y-4"
               >
                 {[
-                  "We’ll work with you to clearly define your needs.",
-                  "We’ll share practical ideas to help you reach your objectives.",
-                  "When you’re ready to move forward, we’ll provide a tailored proposal or quote.",
+                  "We'll work with you to clearly define your needs.",
+                  "We'll share practical ideas to help you reach your objectives.",
+                  "When you're ready to move forward, we'll provide a tailored proposal or quote.",
                 ].map((text, i) => (
                   <motion.div
                     key={i}
                     variants={fadeUp}
                     className="flex items-start space-x-3"
                   >
-                    <CheckCircle className="w-6 h-6 text-red-600 mt-0.5 flex-shrink-0" />
-                    <p className="text-gray-700">{text}</p>
+                    <CheckCircle className="w-5 sm:w-6 h-5 sm:h-6 text-red-600 mt-0.5 flex-shrink-0" />
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                      {text}
+                    </p>
                   </motion.div>
                 ))}
               </motion.div>
 
               <motion.div
                 variants={fadeUp}
-                className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200"
+                className="mt-6 sm:mt-8 p-4 sm:p-6 bg-gray-50 rounded-xl border border-gray-200"
               >
-                <p className="text-sm text-gray-600 text-center">
+                <p className="text-sm text-gray-600 text-center leading-relaxed">
                   <strong className="text-gray-800">
                     No pressure, no obligation.
                   </strong>{" "}
@@ -141,7 +146,7 @@ export default function GetStartedPage() {
           </motion.div>
 
           <motion.div
-            className="lg:sticky lg:top-8"
+            className="lg:sticky lg:top-8 w-full"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
