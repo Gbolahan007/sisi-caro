@@ -66,7 +66,7 @@ const HomeAboutUs = () => {
                 src="/why.jpg"
                 alt="Sisi Caro Digital Marketing Team"
                 fill
-                className="object-cover rounded-2xl"
+                className="object-cover rounded-lg"
                 sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 50vw"
               />
             </div>

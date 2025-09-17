@@ -1,6 +1,7 @@
 import { CreditCard, User, Mail, Phone, Lock } from "lucide-react";
 import { useState } from "react";
 import { formatCurrency } from "../hooks/useCurrency";
+import { redirect } from "next/dist/server/api-utils";
 
 export const PaymentForm = ({ cartItems, total }) => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
@@ -33,14 +34,40 @@ export const PaymentForm = ({ cartItems, total }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
-    setTimeout(() => {
+
+    try {
+      const response = await fetch("/api/payments/initialize", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          amount: total,
+          metadata: {
+            name: formData.name,
+            phone: formData.phone,
+            cartItems,
+          },
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        window.location.href = data.data.authorization_url;
+        redirect("/");
+      } else {
+        alert("Payment initialization failed!");
+      }
+    } catch (err) {
+      console.error("Payment error:", err);
+      alert("Something went wrong.");
+    } finally {
       setIsLoading(false);
-      alert("Payment would be processed with Paystack here!");
-    }, 2000);
+    }
   };
 
   return (

@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
-import Link from "next/link";
-import { formatCurrency } from "@/app/hooks/useCurrency";
+import Image from "next/image";
 
 export default function ServiceHero({ service, onSubscribe }) {
   return (

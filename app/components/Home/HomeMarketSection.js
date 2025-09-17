@@ -56,7 +56,7 @@ export default function ServicesSection() {
                   <motion.div
                     key={service.slug}
                     onClick={() => router.push(`/services/${service.slug}`)}
-                    className="group flex items-center gap-4 border border-gray-200 rounded-full p-4 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer"
+                    className="group flex items-center gap-4 border border-gray-200 rounded-full p-3 bg-white shadow-sm hover:shadow-md transition-shadow cursor-pointer"
                     initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
