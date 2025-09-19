@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useServices } from "@/app/Queryhooks/useServices";
 
-export default function ServicesSection() {
+export default function HomeMarketSection() {
   const router = useRouter();
   const { services, isLoading } = useServices();
 

@@ -18,6 +18,18 @@ export async function POST(request) {
       }
     );
 
+    if (!response.ok) {
+      const errorText = await response.text();
+      return Response.json(
+        {
+          success: false,
+          message: "Failed to verify payment with Paystack",
+          error: errorText,
+        },
+        { status: response.status }
+      );
+    }
+
     const data = await response.json();
 
     if (data.status && data.data.status === "success") {
@@ -29,13 +41,20 @@ export async function POST(request) {
       return Response.json(
         {
           success: false,
-          message: "Payment verification failed",
+          message: data.data?.gateway_response || "Payment verification failed",
+          status: data.data?.status,
         },
         { status: 400 }
       );
     }
   } catch (error) {
-    console.error("Payment verification error:", error);
-    return Response.json({ error: "Internal server error" }, { status: 500 });
+    return Response.json(
+      {
+        success: false,
+        error: "Internal server error",
+        message: error.message,
+      },
+      { status: 500 }
+    );
   }
 }

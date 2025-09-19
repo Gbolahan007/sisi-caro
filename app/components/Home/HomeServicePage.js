@@ -170,7 +170,7 @@ function ServiceCard({
 }
 
 // -------------------- Main Component --------------------
-export default function HomeServices() {
+export default function HomeServicePage() {
   const { services, isLoading } = useServices();
   const [isHydrated, setIsHydrated] = useState(false);
 

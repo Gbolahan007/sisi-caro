@@ -2,6 +2,7 @@ import { CreditCard, User, Mail, Phone, Lock } from "lucide-react";
 import { useState } from "react";
 import { formatCurrency } from "../hooks/useCurrency";
 import { redirect } from "next/dist/server/api-utils";
+import toast from "react-hot-toast";
 
 export const PaymentForm = ({ cartItems, total }) => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
@@ -58,14 +59,13 @@ export const PaymentForm = ({ cartItems, total }) => {
 
       if (data.success) {
         window.location.href = data.data.authorization_url;
-        redirect("/");
       } else {
         alert("Payment initialization failed!");
+        setIsLoading(false);
       }
     } catch (err) {
       console.error("Payment error:", err);
-      alert("Something went wrong.");
-    } finally {
+      toast("Something went wrong.");
       setIsLoading(false);
     }
   };

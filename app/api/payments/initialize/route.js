@@ -10,7 +10,6 @@ export async function POST(request) {
       );
     }
 
-    // Initialize payment with Paystack
     const response = await fetch(
       "https://api.paystack.co/transaction/initialize",
       {
@@ -21,9 +20,9 @@ export async function POST(request) {
         },
         body: JSON.stringify({
           email,
-          amount: amount * 100, 
+          amount: amount * 100,
           currency: "NGN",
-          callback_url: `${process.env.NEXT_PUBLIC_DOMAIN}/payment/callback`,
+          callback_url: `${process.env.NEXT_PUBLIC_DOMAIN}/`,
           metadata: {
             ...metadata,
             cancel_action: `${process.env.NEXT_PUBLIC_DOMAIN}/payment/cancel`,
