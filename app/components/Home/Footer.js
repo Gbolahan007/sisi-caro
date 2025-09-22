@@ -171,7 +171,7 @@ const Footer = () => {
 
             {/* Copyright */}
             <div className="text-gray-500 text-sm">
-              © 2025 Sis Caro. All rights reserved.
+              © 2025 Sisi Caro. All rights reserved.
             </div>
           </div>
         </div>
