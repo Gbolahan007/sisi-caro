@@ -7,7 +7,7 @@ export const PaymentForm = ({ cartItems, total }) => {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState("paystack"); // default Paystack
+  const [paymentMethod, setPaymentMethod] = useState("bank");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,7 +70,7 @@ export const PaymentForm = ({ cartItems, total }) => {
       }
     } else if (paymentMethod === "bank") {
       toast.success(
-        "Bank transfer selected. Please transfer to the details below."
+        "Bank transfer selected. Please transfer to the details above."
       );
     }
   };
@@ -84,18 +84,17 @@ export const PaymentForm = ({ cartItems, total }) => {
 
       {/* Payment Method Selector */}
       <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0 mb-6">
+        {/* Paystack (disabled for now) */}
         <button
           type="button"
-          className={`flex items-center justify-center px-4 py-2 rounded-lg border ${
-            paymentMethod === "paystack"
-              ? "bg-red-500 text-white border-red-500"
-              : "border-gray-300 text-gray-600"
-          }`}
-          onClick={() => setPaymentMethod("paystack")}
+          disabled
+          className="flex items-center justify-center px-4 py-2 rounded-lg border bg-gray-200 text-gray-400 cursor-not-allowed"
         >
           <CreditCard className="w-5 h-5 mr-2" />
-          Pay with Paystack
+          Pay with Paystack (Coming Soon)
         </button>
+
+        {/* Bank Transfer */}
         <button
           type="button"
           className={`flex items-center justify-center px-4 py-2 rounded-lg border ${
@@ -111,8 +110,8 @@ export const PaymentForm = ({ cartItems, total }) => {
       </div>
 
       <div className="space-y-6">
-        {/* Only show form fields if Paystack is selected */}
-        {paymentMethod === "paystack" && (
+        {/* Paystack form is hidden for now (just remove && false later) */}
+        {paymentMethod === "paystack" && false && (
           <>
             {/* Full Name */}
             <div>
@@ -189,7 +188,7 @@ export const PaymentForm = ({ cartItems, total }) => {
           </>
         )}
 
-        {/* Bank Transfer Info (only if selected) */}
+        {/* Bank Transfer Info */}
         {paymentMethod === "bank" && (
           <div className="p-4 border rounded-lg bg-gray-50">
             <p className="font-semibold text-black mb-2">
@@ -247,7 +246,7 @@ export const PaymentForm = ({ cartItems, total }) => {
           ) : paymentMethod === "paystack" ? (
             <>Pay {formatCurrency(total)} with Paystack</>
           ) : (
-            <>Confirm Bank Transfer ({formatCurrency(total)})</>
+            <>Transfer ({formatCurrency(total)}) to the bank details above</>
           )}
         </button>
       </div>
