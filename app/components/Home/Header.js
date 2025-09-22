@@ -72,7 +72,6 @@ function Header() {
     if (needsSolidBackground) {
       return "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100";
     } else {
-      // Original behavior for pages with hero images
       return isScrolled
         ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100"
         : "bg-transparent";

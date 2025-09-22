@@ -21,8 +21,8 @@ export default function ServiceContent({ service, onSubscribe }) {
         >
           <div className="relative aspect-[4/3] overflow-hidden shadow-2xl">
             <Image
-              src={service.image}
-              alt={service.title}
+              src={service?.image || "/did.jpg"}
+              alt={service?.title || "Fallback image"}
               fill
               className="object-cover"
               priority

@@ -49,7 +49,6 @@ export default function HomeMarketSection() {
               ))
             : services?.map((service, index) => {
                 const IconComponent =
-                  // fallback to ArrowRight if no matching icon
                   require("lucide-react")[service.icon?.trim()] || ArrowRight;
 
                 return (
