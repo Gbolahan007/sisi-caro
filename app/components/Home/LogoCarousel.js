@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const LogoCarousel = () => {
-  const logoCount = 16;
+  const logoCount = 17;
   const logos = Array.from({ length: logoCount }, (_, i) => ({
     id: i + 1,
     src: `/logo-${i + 1}.jpg`,
@@ -50,7 +50,7 @@ const LogoCarousel = () => {
               className="flex"
               animate={{ x: ["0%", "-50%"] }}
               transition={{
-                duration: 60,
+                duration: 15,
                 repeat: Infinity,
                 ease: "linear",
               }}

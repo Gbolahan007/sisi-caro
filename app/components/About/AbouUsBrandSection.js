@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const logos = Array.from({ length: 12 }, (_, i) => ({
+const logos = Array.from({ length: 17 }, (_, i) => ({
   id: i + 1,
   src: `/logo-${i + 1}.jpg`,
   alt: `Logo ${i + 1}`,

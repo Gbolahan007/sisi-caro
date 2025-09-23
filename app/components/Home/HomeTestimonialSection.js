@@ -8,13 +8,13 @@ import { motion, AnimatePresence } from "framer-motion";
 const testimonials = [
   {
     id: 1,
-    name: "SARAH MARTINEZ",
-    title: "Director of Marketing, TechFlow Solutions",
-    company: "ECOMMERCE TECH",
+    name: "CINISTASTE",
+    title: "Director of Marketing, cinistaste",
+    company: "cinistaste",
     content:
-      "Sisicaro is one of the leading agencies in Digital Marketing. We hold a close partnership with the team who are constantly at the forefront of the developments in our fast-paced industry. I am highly appreciative of both their expertise and their results-driven mindset.",
+      "So glad I got to work with SisiCaro, their service is so seamless and I love the follow-up calls and checks. You surely will be on your toes to meet up on tasks without the pressure, and she is truly out for your business's growth and progress a win for you is a win for her.Thank you so much for all you do. Can't wait to see the full transformation of my business.",
     rating: 5,
-    avatar: "SM",
+    avatar: "CT",
   },
   {
     id: 2,
