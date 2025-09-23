@@ -99,7 +99,6 @@ export default function Page() {
       <HomeServicePage />
       <HomeMarketSection />
       <HomeTestimonialSection />
-      <Footer />
     </div>
   );
 }
