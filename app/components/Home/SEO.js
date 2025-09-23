@@ -4,7 +4,6 @@ import Script from "next/script";
 export default function SEO() {
   return (
     <>
-      {/* Organization Schema */}
       <Script
         id="org-schema"
         type="application/ld+json"

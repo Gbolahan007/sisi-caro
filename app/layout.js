@@ -5,9 +5,8 @@ import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
 import ReactQueryProvider from "./contexts/ReactQueryProvider";
 import { Montserrat } from "next/font/google";
-import SEO from "@/components/SEO"; // ✅ schema markup component
+import SEO from "./components/Home/SEO";
 
-// Fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
