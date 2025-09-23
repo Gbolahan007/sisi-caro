@@ -24,7 +24,6 @@ const monst = Montserrat({
   subsets: ["latin"],
 });
 
-// ✅ Metadata for SEO + Social sharing
 export const metadata = {
   title: "Sisi Caro Digital Marketing | Expert Digital Marketing Agency",
   description:
