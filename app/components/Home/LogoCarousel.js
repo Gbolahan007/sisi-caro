@@ -48,7 +48,7 @@ const LogoCarousel = () => {
           <div className="relative">
             <motion.div
               className="flex"
-              animate={{ x: ["0%", "-50%"] }}
+              animate={{ x: ["0%", "-100%"] }}
               transition={{
                 duration: 15,
                 repeat: Infinity,

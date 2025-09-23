@@ -5,7 +5,9 @@ import Header from "./components/Home/Header";
 import Footer from "./components/Home/Footer";
 import ReactQueryProvider from "./contexts/ReactQueryProvider";
 import { Montserrat } from "next/font/google";
+import SEO from "@/components/SEO"; // ✅ schema markup component
 
+// Fonts
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -23,6 +25,7 @@ const monst = Montserrat({
   subsets: ["latin"],
 });
 
+// ✅ Metadata for SEO + Social sharing
 export const metadata = {
   title: "Sisi Caro Digital Marketing | Expert Digital Marketing Agency",
   description:
@@ -58,15 +61,35 @@ export const metadata = {
     canonical: "https://sisicaro.com",
   },
   icons: {
-    icon: "/sis-carooo.png",
-    shortcut: "/sis-carooo.png",
-    apple: "/sis-carooo.png",
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
   },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -86,6 +109,7 @@ export default function RootLayout({ children }) {
                 },
               }}
             />
+            <SEO />
             {children}
             <Footer />
           </div>
