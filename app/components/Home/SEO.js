@@ -58,7 +58,7 @@ export default function SEO() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "MarketingAgency",
+            "@type": "ProfessionalService",
             name: "Sisi Caro Digital Marketing",
             url: siteUrl,
             logo: `${siteUrl}${logoUrl}`,

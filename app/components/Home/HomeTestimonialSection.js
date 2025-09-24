@@ -9,8 +9,8 @@ const testimonials = [
   {
     id: 1,
     name: "CINISTASTE",
-    title: "Director of Marketing, cinistaste",
-    company: "cinistaste",
+    title: "Director of Marketing, Cinistaste",
+    company: "Food Vendor Port-Harcourt",
     content:
       "So glad I got to work with SisiCaro, their service is so seamless and I love the follow-up calls and checks. You surely will be on your toes to meet up on tasks without the pressure, and she is truly out for your business's growth and progress a win for you is a win for her.Thank you so much for all you do. Can't wait to see the full transformation of my business.",
     rating: 5,
@@ -18,11 +18,11 @@ const testimonials = [
   },
   {
     id: 2,
-    name: "MICHAEL CHEN",
-    title: "CEO & Founder, GrowthLab",
-    company: "STARTUP ACCELERATOR",
+    name: "CAMIL_KIDDIES",
+    title: "CEO & Founder, Camil_kiddies",
+    company: "Camil Kiddies Store Abuja",
     content:
-      "The Digital Marketing team at Sisicaro provided exceptional strategic guidance for our product launch. Their innovative approach to social media campaigns and SEO optimization helped us achieve 300% growth in our first quarter. We highly recommend Sisicaro's expertise to anyone looking to scale their digital presence.",
+      "In all honesty, I believe I'm enjoying the service you offer. Its outstanding and even commendable how you manage the Instagram account by posting on feed and story and how you comment on other blogs to drive traffic to the page. I appreciate the energy you put into it.I appreciate the effort this past year and I say a big thank you.I hope we can work hand in hand to drive potential customers our way.Thanks again for your hard work Sisi.",
     rating: 5,
     avatar: "MC",
   },
