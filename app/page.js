@@ -3,14 +3,13 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import HeroSection from "./components/Home/HeroSection";
-import LogoCarousel from "./components/Home/LogoCarousel";
-import HomeAboutUs from "./components/Home/HomeAboutUs";
-import HomeTestimonialSection from "./components/Home/HomeTestimonialSection";
-import Footer from "./components/Home/Footer";
-import HomeServicePage from "./components/Home/HomeServicePage";
-import HomeMarketSection from "./components/Home/HomeMarketSection";
 import useCartStore from "./cartStore/store";
+import HeroSection from "./components/Home/HeroSection";
+import HomeAboutUs from "./components/Home/HomeAboutUs";
+import HomeMarketSection from "./components/Home/HomeMarketSection";
+import HomeServicePage from "./components/Home/HomeServicePage";
+import HomeTestimonialSection from "./components/Home/HomeTestimonialSection";
+import LogoCarousel from "./components/Home/LogoCarousel";
 
 export default function Page() {
   const searchParams = useSearchParams();
